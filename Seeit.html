@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nidus Information</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* ╔════════════════════════════════════════════════════════════════════════════╗
+   ║                        NEON UI FRAMEWORK v1.0                               ║
+   ║                     Futuristic Dark Theme Styles                           ║
+   ╚════════════════════════════════════════════════════════════════════════════╝
+
+   ┌─────────────────────────────────────────────────────────────────────────────┐
+   │                            TABLE OF CONTENTS                                │
+   ├─────────────────────────────────────────────────────────────────────────────┤
+   │                                                                             │
+   │   SECTION 1: ROOT VARIABLES .......................... Lines  40 -  75     │
+   │   SECTION 2: RESET & BASE ............................ Lines  80 - 110     │
+   │   SECTION 3: CONTAINER & LAYOUT ...................... Lines 115 - 160     │
+   │   SECTION 4: TYPOGRAPHY .............................. Lines 165 - 250     │
+   │   SECTION 5: BUTTONS ................................. Lines 255 - 450     │
+   │   SECTION 6: CARDS ................................... Lines 455 - 620     │
+   │   SECTION 7: VIDEO SECTIONS .......................... Lines 625 - 780     │
+   │   SECTION 8: UTILITIES ............................... Lines 785 - 880     │
+   │   SECTION 9: ANIMATIONS .............................. Lines 885 - 950     │
+   │                                                                             │
+   └─────────────────────────────────────────────────────────────────────────────┘
+*/
+
+
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 1: ROOT VARIABLES
+   Define all colors, spacing, and transitions here
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Primary Brand Colors */
+  --green:            #76b900;
+  --green-light:      #8ed100;
+  --green-glow:       rgba(118, 185, 0, 0.6);
+  --green-soft:       rgba(118, 185, 0, 0.15);
+
+  /* Accent Colors */
+  --cyan:             #00d4ff;
+  --cyan-glow:        rgba(0, 212, 255, 0.6);
+  --purple:           #b14eff;
+  --purple-glow:      rgba(177, 78, 255, 0.6);
+  --pink:             #ff2d92;
+  --orange:           #ff6b2d;
+  --red:              #ff3b3b;
+
+  /* Background Colors */
+  --black:            #000000;
+  --black-soft:       #0a0a0a;
+  --black-card:       #111111;
+  --black-hover:      #1a1a1a;
+  --black-input:      #0d0d0d;
+
+  /* Text Colors */
+  --white:            #ffffff;
+  --gray:             #a0a0a0;
+  --gray-dark:        #666666;
+
+  /* Border Colors */
+  --border:           rgba(255, 255, 255, 0.1);
+  --border-hover:     rgba(255, 255, 255, 0.2);
+
+  /* Transitions */
+  --speed-fast:       0.15s ease;
+  --speed-normal:     0.3s ease;
+  --speed-slow:       0.5s ease;
+
+  /* Border Radius */
+  --radius-sm:        4px;
+  --radius-md:        8px;
+  --radius-lg:        12px;
+  --radius-xl:        20px;
+  --radius-full:      50px;
+}
+
+
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 2: RESET & BASE
+   Clean slate for consistent styling
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Inter', -apple-system, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 3: CONTAINER & LAYOUT
+   Page structure and grid systems
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/*
+   USAGE:
+   <div class="container">
+     Your centered content here (max 1200px)
+   </div>
+*/
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.container-sm  { max-width: 800px; }
+.container-lg  { max-width: 1400px; }
+.container-full { max-width: 100%; padding: 0 5%; }
+
+
+/*
+   USAGE:
+   <div class="grid grid-3">
+     <div>Item 1</div>
+     <div>Item 2</div>
+     <div>Item 3</div>
+   </div>
+*/
+
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 992px) {
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 576px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
+
+
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 4: TYPOGRAPHY
+   Headings, text styles, and special effects
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/*
+   HEADINGS
+   --------
+   USAGE:
+   <h1 class="h-xl">Extra Large Heading</h1>
+   <h2 class="h-lg">Large Heading</h2>
+   <h3 class="h-md">Medium Heading</h3>
+   <h4 class="h-sm">Small Heading</h4>
+*/
+
+.h-xl {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+}
+
+.h-lg {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.h-md {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.h-sm {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+
+/*
+   BODY TEXT
+   ---------
+   USAGE:
+   <p class="text-lg">Large paragraph text</p>
+   <p class="text-md">Normal paragraph text</p>
+   <p class="text-sm">Small text</p>
+*/
+
+.text-lg { font-size: 1.25rem; color: var(--gray); line-height: 1.7; }
+.text-md { font-size: 1rem; color: var(--gray); line-height: 1.6; }
+.text-sm { font-size: 0.875rem; color: var(--gray-dark); }
+
+
+/*
+   GLOWING TEXT
+   ------------
+   USAGE:
+   <span class="glow-green">Glowing Green Text</span>
+   <span class="glow-cyan">Glowing Cyan Text</span>
+*/
+
+.glow-green {
+  color: var(--green);
+  text-shadow: 0 0 20px var(--green-glow), 0 0 40px var(--green-glow);
+}
+
+.glow-cyan {
+  color: var(--cyan);
+  text-shadow: 0 0 20px var(--cyan-glow), 0 0 40px var(--cyan-glow);
+}
+
+.glow-purple {
+  color: var(--purple);
+  text-shadow: 0 0 20px var(--purple-glow), 0 0 40px var(--purple-glow);
+}
+
+
+/*
+   GRADIENT TEXT
+   -------------
+   USAGE:
+   <span class="gradient-green">Gradient Text</span>
+*/
+
+.gradient-green {
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-cyber {
+  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-fire {
+  background: linear-gradient(135deg, var(--orange), var(--pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   TEXT COLORS
+   Simple color classes for any text
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/*
+   USAGE:
+   <h1 class="h-xl text-green">Green Heading</h1>
+   <h2 class="h-lg text-cyan">Cyan Heading</h2>
+   <p class="text-md text-white">White paragraph</p>
+*/
+
+/* ── SOLID COLORS (No glow) ── */
+.text-white   { color: var(--white); }
+.text-green   { color: var(--green); }
+.text-cyan    { color: var(--cyan); }
+.text-purple  { color: var(--purple); }
+.text-pink    { color: var(--pink); }
+.text-orange  { color: var(--orange); }
+.text-red     { color: var(--red); }
+.text-gray    { color: var(--gray); }
+
+
+/* ── CUSTOM HEX COLORS ── */
+/* Add your own colors here */
+.text-blue    { color: #3b82f6; }
+.text-yellow  { color: #fbbf24; }
+.text-teal    { color: #2a9a46; }
+
+
+/* ── GLOWING COLORS (With shadow effect) ── */
+.text-green-glow {
+  color: var(--green);
+  text-shadow: 0 0 20px var(--green-glow), 0 0 40px var(--green-glow);
+}
+
+.text-cyan-glow {
+  color: var(--cyan);
+  text-shadow: 0 0 20px var(--cyan-glow), 0 0 40px var(--cyan-glow);
+}
+
+.text-purple-glow {
+  color: var(--purple);
+  text-shadow: 0 0 20px var(--purple-glow), 0 0 40px var(--purple-glow);
+}
+
+.text-pink-glow {
+  color: var(--pink);
+  text-shadow: 0 0 20px rgba(255, 45, 146, 0.6), 0 0 40px rgba(255, 45, 146, 0.6);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 5: BUTTONS
+   All button styles and variations
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/*
+   ┌─────────────────────────────────────────────────────────────────────────────┐
+   │  BUTTON USAGE EXAMPLES                                                      │
+   ├─────────────────────────────────────────────────────────────────────────────┤
+   │                                                                             │
+   │  BASIC BUTTONS:                                                             │
+   │  <a href="YOUR_LINK" class="btn btn-green">Green Button</a>                 │
+   │  <a href="YOUR_LINK" class="btn btn-white">White Button</a>                 │
+   │  <a href="YOUR_LINK" class="btn btn-outline">Outline Button</a>             │
+   │                                                                             │
+   │  WITH SIZES:                                                                │
+   │  <a href="YOUR_LINK" class="btn btn-green btn-lg">Large Button</a>          │
+   │  <a href="YOUR_LINK" class="btn btn-green btn-sm">Small Button</a>          │
+   │                                                                             │
+   │  FULL WIDTH:                                                                │
+   │  <a href="YOUR_LINK" class="btn btn-green btn-block">Full Width</a>         │
+   │                                                                             │
+   │  WITH ICON (use any emoji or icon):                                         │
+   │  <a href="YOUR_LINK" class="btn btn-green">Learn More →</a>                 │
+   │                                                                             │
+   └─────────────────────────────────────────────────────────────────────────────┘
+*/
+
+
+/* Base Button Style */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 14px 32px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--speed-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* ── GREEN BUTTON (Primary) ── */
+.btn-green {
+  background: var(--green);
+  color: var(--black);
+  border-color: var(--green);
+}
+
+.btn-green:hover {
+  background: var(--green-light);
+  border-color: var(--green-light);
+  box-shadow: 0 0 30px var(--green-glow), 0 5px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-green:active {
+  transform: translateY(0);
+  box-shadow: 0 0 15px var(--green-glow);
+}
+
+
+/* ── WHITE BUTTON ── */
+.btn-white {
+  background: var(--white);
+  color: var(--black);
+  border-color: var(--white);
+}
+
+.btn-white:hover {
+  background: var(--gray);
+  border-color: var(--gray);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3), 0 5px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+
+/* ── OUTLINE BUTTON (Transparent with border) ── */
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  border-color: var(--border-hover);
+}
+
+.btn-outline:hover {
+  border-color: var(--green);
+  color: var(--green);
+  box-shadow: 0 0 20px var(--green-glow);
+}
+
+
+/* ── OUTLINE GREEN ── */
+.btn-outline-green {
+  background: transparent;
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.btn-outline-green:hover {
+  background: var(--green);
+  color: var(--black);
+  box-shadow: 0 0 25px var(--green-glow);
+  transform: translateY(-2px);
+}
+
+
+/* ── GHOST BUTTON (Minimal) ── */
+.btn-ghost {
+  background: transparent;
+  color: var(--green);
+  border-color: transparent;
+  padding: 10px 0;
+}
+
+.btn-ghost:hover {
+  text-shadow: 0 0 10px var(--green-glow);
+}
+
+.btn-ghost::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--green);
+  transition: width var(--speed-normal);
+}
+
+.btn-ghost:hover::after {
+  width: 100%;
+}
+
+
+/* ── GLASS BUTTON (Frosted glass effect) ── */
+.btn-glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  color: var(--white);
+  border-color: var(--border);
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--green);
+  box-shadow: 0 0 20px var(--green-glow);
+}
+
+
+/* ── CYAN BUTTON ── */
+.btn-cyan {
+  background: var(--cyan);
+  color: var(--black);
+  border-color: var(--cyan);
+}
+
+.btn-cyan:hover {
+  box-shadow: 0 0 30px var(--cyan-glow), 0 5px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+
+/* ── PURPLE BUTTON ── */
+.btn-purple {
+  background: var(--purple);
+  color: var(--white);
+  border-color: var(--purple);
+}
+
+.btn-purple:hover {
+  box-shadow: 0 0 30px var(--purple-glow), 0 5px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+
+/* ── DANGER BUTTON (Red) ── */
+.btn-danger {
+  background: var(--red);
+  color: var(--white);
+  border-color: var(--red);
+}
+
+.btn-danger:hover {
+  box-shadow: 0 0 30px rgba(255, 59, 59, 0.5);
+  transform: translateY(-2px);
+}
+
+
+/* ── GLOW PULSE BUTTON ── */
+.btn-pulse {
+  animation: btnPulse 2s ease-in-out infinite;
+}
+
+@keyframes btnPulse {
+  0%, 100% { box-shadow: 0 0 15px var(--green-glow); }
+  50% { box-shadow: 0 0 35px var(--green-glow); }
+}
+
+
+/* ── BUTTON SIZES ── */
+.btn-sm {
+  padding: 10px 20px;
+  font-size: 0.8rem;
+}
+
+.btn-lg {
+  padding: 18px 44px;
+  font-size: 1.1rem;
+}
+
+.btn-xl {
+  padding: 22px 56px;
+  font-size: 1.2rem;
+}
+
+
+/* ── BUTTON WIDTHS ── */
+.btn-block {
+  width: 100%;
+}
+
+
+/* ── BUTTON WITH ICON ── */
+.btn-icon {
+  padding: 14px;
+  min-width: 50px;
+}
+
+.btn-icon.btn-sm { padding: 10px; min-width: 40px; }
+.btn-icon.btn-lg { padding: 18px; min-width: 60px; }
+
+
+/* ── ROUNDED BUTTON ── */
+.btn-rounded {
+  border-radius: var(--radius-full);
+}
+
+
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 6: CARDS
+   Card layouts and styles
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/*
+   ┌─────────────────────────────────────────────────────────────────────────────┐
+   │  CARD USAGE EXAMPLES                                                        │
+   ├─────────────────────────────────────────────────────────────────────────────┤
+   │                                                                             │
+   │  BASIC CARD:                                                                │
+   │  <div class="card">                                                         │
+   │    <h3 class="h-sm">Card Title</h3>                                         │
+   │    <p class="text-md">Card content goes here.</p>                           │
+   │  </div>                                                                     │
+   │                                                                             │
+   │  CARD WITH ICON:                                                            │
+   │  <div class="card">                                                         │
+   │    <div class="card-icon">⚡</div>                                          │
+   │    <h3 class="h-sm">Title</h3>                                              │
+   │    <p class="text-md">Description</p>                                       │
+   │  </div>                                                                     │
+   │                                                                             │
+   │  CARD WITH IMAGE:                                                           │
+   │  <div class="card card-image">                                              │
+   │    <img src="image.jpg" alt="" class="card-img">                            │
+   │    <div class="card-body">                                                  │
+   │      <h3 class="h-sm">Title</h3>                                            │
+   │      <p class="text-md">Description</p>                                     │
+   │    </div>                                                                   │
+   │  </div>                                                                     │
+   │                                                                             │
+   │  CARD VARIANTS:                                                             │
+   │  <div class="card card-glow">...</div>    (Top glow on hover)               │
+   │  <div class="card card-glass">...</div>   (Frosted glass)                   │
+   │  <div class="card card-border">...</div>  (Glowing border)                  │
+   │                                                                             │
+   └─────────────────────────────────────────────────────────────────────────────┘
+*/
+
+
+/* ── BASE CARD ── */
+.card {
+  background: var(--black-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  transition: all var(--speed-normal);
+}
+
+.card:hover {
+  background: var(--black-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-5px);
+}
+
+
+/* ── CARD WITH TOP GLOW ── */
+.card-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+  opacity: 0;
+  transition: opacity var(--speed-normal);
+}
+
+.card-glow:hover::before {
+  opacity: 1;
+}
+
+.card-glow:hover {
+  border-color: var(--green-soft);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ── GLASS CARD ── */
+.card-glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+}
+
+.card-glass:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--border-hover);
+}
+
+
+/* ── BORDER GLOW CARD ── */
+.card-border {
+  border: 1px solid var(--green);
+  box-shadow: 0 0 20px var(--green-soft);
+}
+
+.card-border:hover {
+  box-shadow: 0 0 30px var(--green-glow);
+}
+
+
+/* ── FEATURE CARD (Highlighted) ── */
+.card-feature {
+  background: linear-gradient(180deg, var(--green-soft) 0%, transparent 100%);
+  border: 1px solid var(--green);
+  border-radius: var(--radius-xl);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+
+/* ── DARK CARD ── */
+.card-dark {
+  background: var(--black);
+  border: 1px solid var(--border);
+}
+
+
+/* ── CARD ICON ── */
+.card-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--green-soft);
+  border: 1px solid var(--green);
+  border-radius: var(--radius-md);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all var(--speed-normal);
+}
+
+.card:hover .card-icon {
+  box-shadow: 0 0 20px var(--green-glow);
+}
+
+.card-icon-cyan {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: var(--cyan);
+}
+
+.card-icon-purple {
+  background: rgba(177, 78, 255, 0.1);
+  border-color: var(--purple);
+}
+
+.card-icon-lg {
+  width: 80px;
+  height: 80px;
+  font-size: 2rem;
+}
+
+
+/* ── CARD WITH IMAGE ── */
+.card-image {
+  padding: 0;
+  overflow: hidden;
+}
+
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+
+/* ── CARD SIZES ── */
+.card-sm { padding: 1.25rem; }
+.card-lg { padding: 3rem; }
+
+
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 7: VIDEO SECTIONS
+   Full-screen video backgrounds with text overlay
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/*
+   ┌─────────────────────────────────────────────────────────────────────────────┐
+   │  VIDEO SECTION USAGE                                                        │
+   ├─────────────────────────────────────────────────────────────────────────────┤
+   │                                                                             │
+   │  BASIC VIDEO SECTION:                                                       │
+   │                                                                             │
+   │  <section class="video-section">                                            │
+   │    <div class="video-bg opacity-20">                                        │
+   │      <video autoplay muted loop playsinline>                                │
+   │        <source src="YOUR_VIDEO.mp4" type="video/mp4">                       │
+   │      </video>                                                               │
+   │    </div>                                                                   │
+   │    <div class="video-overlay overlay-gradient"></div>                       │
+   │    <div class="video-content">                                              │
+   │      <h1 class="h-xl">YOUR HEADING</h1>                                     │
+   │      <p class="text-lg">Your description text here.</p>                     │
+   │      <a href="YOUR_LINK" class="btn btn-green">Button Text</a>              │
+   │    </div>                                                                   │
+   │  </section>                                                                 │
+   │                                                                             │
+   │  HEIGHT OPTIONS:                                                            │
+   │  class="video-section"            (Full screen - 100vh)                     │
+   │  class="video-section h-80"       (80% screen height)                       │
+   │  class="video-section h-70"       (70% screen height)                       │
+   │  class="video-section h-50"       (50% screen height)                       │
+   │                                                                             │
+   │  OPACITY OPTIONS:                                                           │
+   │  class="video-bg opacity-10"      (Very subtle)                             │
+   │  class="video-bg opacity-20"      (Subtle - Recommended)                    │
+   │  class="video-bg opacity-30"      (Medium)                                  │
+   │  class="video-bg opacity-40"      (Visible)                                 │
+   │  class="video-bg opacity-50"      (Strong)                                  │
+   │                                                                             │
+   │  OVERLAY OPTIONS:                                                           │
+   │  class="video-overlay overlay-dark"         (Simple dark)                   │
+   │  class="video-overlay overlay-gradient"     (Top & bottom fade)             │
+   │  class="video-overlay overlay-bottom"       (Fade at bottom)                │
+   │  class="video-overlay overlay-green"        (Green tint)                    │
+   │  class="video-overlay overlay-radial"       (Center spotlight)              │
+   │                                                                             │
+   │  CONTENT POSITION:                                                          │
+   │  class="video-content"                      (Centered)                      │
+   │  class="video-content content-left"         (Left aligned)                  │
+   │  class="video-content content-right"        (Right aligned)                 │
+   │  class="video-content content-bottom"       (Bottom aligned)                │
+   │                                                                             │
+   └─────────────────────────────────────────────────────────────────────────────┘
+*/
+
+
+/* ── VIDEO SECTION CONTAINER ── */
+.video-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.video-section.h-80 { min-height: 80vh; }
+.video-section.h-70 { min-height: 70vh; }
+.video-section.h-50 { min-height: 50vh; }
+
+
+/* ── VIDEO BACKGROUND ── */
+.video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.video-bg video,
+.video-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Hide video controls */
+.video-bg video::-webkit-media-controls { display: none !important; }
+.video-bg video { pointer-events: none; }
+
+
+/* ── VIDEO OPACITY LEVELS ── */
+.video-bg.opacity-10 video, .video-bg.opacity-10 img { opacity: 0.1; }
+.video-bg.opacity-15 video, .video-bg.opacity-15 img { opacity: 0.15; }
+.video-bg.opacity-20 video, .video-bg.opacity-20 img { opacity: 0.2; }
+.video-bg.opacity-25 video, .video-bg.opacity-25 img { opacity: 0.25; }
+.video-bg.opacity-30 video, .video-bg.opacity-30 img { opacity: 0.3; }
+.video-bg.opacity-40 video, .video-bg.opacity-40 img { opacity: 0.4; }
+.video-bg.opacity-50 video, .video-bg.opacity-50 img { opacity: 0.5; }
+
+
+/* ── VIDEO OVERLAYS ── */
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.overlay-dark {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.overlay-darker {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.overlay-gradient {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+.overlay-bottom {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+}
+
+.overlay-top {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    transparent 100%
+  );
+}
+
+.overlay-green {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(118, 185, 0, 0.15) 100%
+  );
+}
+
+.overlay-cyan {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 212, 255, 0.15) 100%
+  );
+}
+
+.overlay-purple {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(177, 78, 255, 0.15) 100%
+  );
+}
+
+.overlay-radial {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+
+/* ── VIDEO CONTENT ── */
+.video-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.content-left {
+  text-align: left;
+  margin-right: auto;
+}
+
+.content-right {
+  text-align: right;
+  margin-left: auto;
+}
+
+.content-bottom {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+/* ── SCROLL INDICATOR ── */
+/*
+   USAGE:
+   <div class="scroll-indicator">
+     <span>Scroll</span>
+     <div class="scroll-line"></div>
+   </div>
+*/
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--gray);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(180deg, var(--green), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { 
+    opacity: 1; 
+    height: 50px; 
+  }
+  50% { 
+    opacity: 0.3; 
+    height: 30px; 
+  }
+}
+
+
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 8: UTILITIES
+   Helper classes for spacing, flexbox, and alignment
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/*
+   ┌─────────────────────────────────────────────────────────────────────────────┐
+   │  UTILITY CLASSES REFERENCE                                                  │
+   ├─────────────────────────────────────────────────────────────────────────────┤
+   │                                                                             │
+   │  FLEXBOX:                                                                   │
+   │  class="flex"                 (Display flex)                                │
+   │  class="flex-col"             (Flex column)                                 │
+   │  class="items-center"         (Align items center)                          │
+   │  class="justify-center"       (Justify content center)                      │
+   │  class="justify-between"      (Space between)                               │
+   │  class="gap-1" to "gap-5"     (Gap spacing)                                 │
+   │                                                                             │
+   │  SPACING (Margin):                                                          │
+   │  class="mt-1" to "mt-6"       (Margin top)                                  │
+   │  class="mb-1" to "mb-6"       (Margin bottom)                               │
+   │  class="mx-auto"              (Center horizontally)                         │
+   │                                                                             │
+   │  SPACING (Padding):                                                         │
+   │  class="p-1" to "p-6"         (Padding all sides)                           │
+   │  class="py-1" to "py-6"       (Padding top & bottom)                        │
+   │  class="px-1" to "px-6"       (Padding left & right)                        │
+   │                                                                             │
+   │  TEXT:                                                                      │
+   │  class="text-center"          (Center text)                                 │
+   │  class="text-left"            (Left align)                                  │
+   │  class="text-right"           (Right align)                                 │
+   │                                                                             │
+   │  WIDTH:                                                                     │
+   │  class="w-full"               (100% width)                                  │
+   │  class="max-w-sm"             (Max 400px)                                   │
+   │  class="max-w-md"             (Max 600px)                                   │
+   │  class="max-w-lg"             (Max 800px)                                   │
+   │                                                                             │
+   └─────────────────────────────────────────────────────────────────────────────┘
+*/
+
+
+/* ── FLEXBOX ── */
+.flex              { display: flex; }
+.flex-col          { flex-direction: column; }
+.flex-wrap         { flex-wrap: wrap; }
+.items-center      { align-items: center; }
+.items-start       { align-items: flex-start; }
+.items-end         { align-items: flex-end; }
+.justify-center    { justify-content: center; }
+.justify-between   { justify-content: space-between; }
+.justify-start     { justify-content: flex-start; }
+.justify-end       { justify-content: flex-end; }
+
+.gap-1 { gap: 0.5rem; }
+.gap-2 { gap: 1rem; }
+.gap-3 { gap: 1.5rem; }
+.gap-4 { gap: 2rem; }
+.gap-5 { gap: 3rem; }
+
+
+/* ── MARGIN ── */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+.mt-5 { margin-top: 3rem; }
+.mt-6 { margin-top: 4rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+.mb-5 { margin-bottom: 3rem; }
+.mb-6 { margin-bottom: 4rem; }
+
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+
+/* ── PADDING ── */
+.p-1 { padding: 0.5rem; }
+.p-2 { padding: 1rem; }
+.p-3 { padding: 1.5rem; }
+.p-4 { padding: 2rem; }
+.p-5 { padding: 3rem; }
+.p-6 { padding: 4rem; }
+
+.py-1 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.py-2 { padding-top: 1rem; padding-bottom: 1rem; }
+.py-3 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+.py-4 { padding-top: 2rem; padding-bottom: 2rem; }
+.py-5 { padding-top: 3rem; padding-bottom: 3rem; }
+.py-6 { padding-top: 4rem; padding-bottom: 4rem; }
+
+.px-1 { padding-left: 0.5rem; padding-right: 0.5rem; }
+.px-2 { padding-left: 1rem; padding-right: 1rem; }
+.px-3 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.px-4 { padding-left: 2rem; padding-right: 2rem; }
+.px-5 { padding-left: 3rem; padding-right: 3rem; }
+
+
+/* ── TEXT ALIGNMENT ── */
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+
+
+/* ── WIDTH ── */
+.w-full  { width: 100%; }
+.max-w-xs { max-width: 300px; }
+.max-w-sm { max-width: 400px; }
+.max-w-md { max-width: 600px; }
+.max-w-lg { max-width: 800px; }
+.max-w-xl { max-width: 1000px; }
+
+
+/* ── DISPLAY ── */
+.hidden { display: none; }
+.block  { display: block; }
+
+
+/* ── POSITION ── */
+.relative { position: relative; }
+.absolute { position: absolute; }
+
+
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 9: ANIMATIONS
+   Scroll reveal and other animations
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/*
+   ┌─────────────────────────────────────────────────────────────────────────────┐
+   │  ANIMATION USAGE                                                            │
+   ├─────────────────────────────────────────────────────────────────────────────┤
+   │                                                                             │
+   │  SCROLL REVEAL (Add these classes, JS activates them on scroll):            │
+   │  class="reveal"               (Fade up)                                     │
+   │  class="reveal-left"          (Slide from left)                             │
+   │  class="reveal-right"         (Slide from right)                            │
+   │  class="reveal-scale"         (Scale up)                                    │
+   │                                                                             │
+   │  DELAYS (Combine with reveal):                                              │
+   │  class="reveal delay-1"       (0.1s delay)                                  │
+   │  class="reveal delay-2"       (0.2s delay)                                  │
+   │  class="reveal delay-3"       (0.3s delay)                                  │
+   │                                                                             │
+   │  ALWAYS-ON ANIMATIONS:                                                      │
+   │  class="animate-pulse"        (Pulsing glow)                                │
+   │  class="animate-float"        (Floating up/down)                            │
+   │                                                                             │
+   └─────────────────────────────────────────────────────────────────────────────┘
+*/
+
+
+/* ── SCROLL REVEAL (Hidden by default, JS adds .active) ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal-scale.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/* ── ANIMATION DELAYS ── */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+
+
+/* ── ALWAYS-ON ANIMATIONS ── */
+.animate-pulse {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { 
+    box-shadow: 0 0 15px var(--green-glow); 
+  }
+  50% { 
+    box-shadow: 0 0 40px var(--green-glow); 
+  }
+}
+
+.animate-float {
+  animation: floatUpDown 4s ease-in-out infinite;
+}
+
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 10: BADGES & TAGS
+   Small labels for categories, status, etc.
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/*
+   USAGE:
+   <span class="badge">Default Badge</span>
+   <span class="badge badge-cyan">Cyan Badge</span>
+   <span class="badge badge-solid">Solid Badge</span>
+*/
+
+.badge {
+  display: inline-block;
+  padding: 6px 16px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border-radius: var(--radius-full);
+  background: var(--green-soft);
+  color: var(--green);
+  border: 1px solid var(--green);
+}
+
+.badge-cyan {
+  background: rgba(0, 212, 255, 0.15);
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+.badge-purple {
+  background: rgba(177, 78, 255, 0.15);
+  color: var(--purple);
+  border-color: var(--purple);
+}
+
+.badge-pink {
+  background: rgba(255, 45, 146, 0.15);
+  color: var(--pink);
+  border-color: var(--pink);
+}
+
+.badge-solid {
+  background: var(--green);
+  color: var(--black);
+  border-color: var(--green);
+}
+
+.badge-solid-white {
+  background: var(--white);
+  color: var(--black);
+  border-color: var(--white);
+}
+
+
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 11: DIVIDERS
+   Visual separators
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/*
+   USAGE:
+   <div class="divider"></div>
+   <div class="divider-glow"></div>
+   <div class="divider-thick"></div>
+*/
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background: var(--border);
+  margin: 2rem 0;
+}
+
+.divider-glow {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+  margin: 2rem 0;
+}
+
+.divider-thick {
+  height: 4px;
+  width: 60px;
+  background: var(--green);
+  border-radius: 2px;
+}
+
+.divider-thick-cyan {
+  height: 4px;
+  width: 60px;
+  background: var(--cyan);
+  border-radius: 2px;
+}
+
+
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 12: SECTION BACKGROUNDS
+   Full-width section styles
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/*
+   USAGE:
+   <section class="section bg-dark">...</section>
+   <section class="section bg-darker">...</section>
+*/
+
+.section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.section-sm { padding: 60px 0; }
+.section-lg { padding: 140px 0; }
+
+.bg-dark    { background: var(--black); }
+.bg-darker  { background: var(--black-soft); }
+.bg-card    { background: var(--black-card); }
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   THEME TOGGLE: ORANGE/WHITE ALTERNATE THEME
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/*
+   USAGE:
+   Add class "theme-orange" to <body> to switch themes
+   <body class="theme-orange">
+*/
+
+/* ── OVERRIDE COLORS WHEN ORANGE THEME IS ACTIVE ── */
+body.theme-orange {
+  --green:        #ff6b2d;
+  --green-light:  #ff8c5a;
+  --green-glow:   rgba(255, 107, 45, 0.6);
+  --green-soft:   rgba(255, 107, 45, 0.15);
+  --black:        #ffffff;
+  --black-soft:   #f5f5f5;
+  --black-card:   #eeeeee;
+  --black-hover:  #e0e0e0;
+  --white:        #000000;
+  --gray:         #555555;
+  --gray-dark:    #888888;
+  --border:       rgba(0, 0, 0, 0.1);
+  --border-hover: rgba(0, 0, 0, 0.2);
+}
+
+/* Fix button text on light background */
+body.theme-orange .btn-green {
+  color: #ffffff;
+}
+
+body.theme-orange .btn-white {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+body.theme-orange .btn-white:hover {
+  background: #333333;
+  border-color: #333333;
+}
+
+/* Fix outline button */
+body.theme-orange .btn-outline {
+  color: #000000;
+}
+
+body.theme-orange .btn-outline:hover {
+  color: #ff6b2d;
+}
+
+
+/* ── THEME TOGGLE BUTTON STYLE ── */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  padding: 12px 20px;
+  background: var(--green);
+  color: var(--black);
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--speed-normal);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px var(--green-glow);
+}
+
+.theme-toggle-icon {
+  font-size: 1.1rem;
+}
+
+</style>
+
+</head>
+
+<body>
+
+  <!-- Theme Toggle Button -->
+<button class="theme-toggle" id="themeToggle">
+  <span class="theme-toggle-icon"></span>
+  <span id="themeText">Light Mode</span>
+</button>
+
+  <!-- YOUR CONTENT GOES HERE -->
+    <section class="video-section">                                            
+       <div class="video-bg opacity-25">                                        
+         <video autoplay muted loop playsinline>                               
+           <source src="Videos-Pictures\2278095-hd_1920_1080_30fps.mp4" type="video/mp4">                       
+         </video>                                                               
+       </div>               
+
+       <div class="video-overlay overlay-gradient"></div>                       
+       <div class="video-content">                                              
+         <h1 class="h-xl">Nidus</h1>                                    
+         <p class="text-lg">Technology just got a whole lot more interesting</p>                     
+         <a href="index.html" class="btn btn-green">Home</a>              
+       </div>                                                                   
+     </section> 
+
+      <section class="">                                            
+       <div class="video-bg opacity-25">                                        
+         <video autoplay muted loop playsinline>                               
+           <source src="Videos-Pictures\2278095-hd_1920_1080_30fps.mp4" type="video/mp4">                       
+         </video>                                                               
+       </div>               
+
+       <div class="video-overlay overlay-gradient"></div>                       
+       <div class="video-content content-left">                                              
+         <h1 class="h-xl">Nidus</h1>                                    
+         <p class="text-lg">Technology just got a whole lot more interesting</p>                     
+         <a href="index.html" class="btn btn-green">Home</a>              
+       </div>                                                                   
+     </section> 
+
+     <div class="card">                                                         
+      <h3 class="h-sm">What we do</h3>                                         
+      <p class="text-md">Card content goes here.</p>                           
+   </div>                                                                   
+                                                                                           
+                                                                                
+  
+
+  
+
+  
+  <!-- ══════════════════════════════════════════════════════════════════════════
+       JAVASCRIPT - Scroll Reveal
+       Place this right before </body>
+       ══════════════════════════════════════════════════════════════════════════ -->
+  <script>
+    // Scroll Reveal Animation
+    function reveal() {
+      const elements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+      
+      elements.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        const revealPoint = 150;
+        
+        if (elementTop < windowHeight - revealPoint) {
+          el.classList.add('active');
+        }
+      });
+    }
+    
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
+  // Theme Toggle
+  const themeToggle = document.getElementById('themeToggle');
+  const themeText = document.getElementById('themeText');
+  const body = document.body;
+
+  themeToggle.addEventListener('click', () => {
+    body.classList.toggle('theme-orange');
+    
+    if (body.classList.contains('theme-orange')) {
+      themeText.textContent = 'Dark Mode';
+    } else {
+      themeText.textContent = 'Light Mode';
+    }
+  });
+  </script>
+
+</body>
+</html>
