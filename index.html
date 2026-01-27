@@ -3,67 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nidus Information</title>
+  <title>Nidus - Mosquito Control Software</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 /* ╔════════════════════════════════════════════════════════════════════════════╗
-   ║                        NEON UI FRAMEWORK v1.0                               ║
-   ║                     Futuristic Dark Theme Styles                           ║
+   ║                        NIDUS UI FRAMEWORK                                  ║
+   ║                     Orange Theme + Light/Dark Mode                         ║
    ╚════════════════════════════════════════════════════════════════════════════╝
-
-   ┌─────────────────────────────────────────────────────────────────────────────┐
-   │                            TABLE OF CONTENTS                                │
-   ├─────────────────────────────────────────────────────────────────────────────┤
-   │                                                                             │
-   │   SECTION 1: ROOT VARIABLES .......................... Lines  40 -  75     │
-   │   SECTION 2: RESET & BASE ............................ Lines  80 - 110     │
-   │   SECTION 3: CONTAINER & LAYOUT ...................... Lines 115 - 160     │
-   │   SECTION 4: TYPOGRAPHY .............................. Lines 165 - 250     │
-   │   SECTION 5: BUTTONS ................................. Lines 255 - 450     │
-   │   SECTION 6: CARDS ................................... Lines 455 - 620     │
-   │   SECTION 7: VIDEO SECTIONS .......................... Lines 625 - 780     │
-   │   SECTION 8: UTILITIES ............................... Lines 785 - 880     │
-   │   SECTION 9: ANIMATIONS .............................. Lines 885 - 950     │
-   │                                                                             │
-   └─────────────────────────────────────────────────────────────────────────────┘
 */
-
-
 
 
 /* ══════════════════════════════════════════════════════════════════════════════
    SECTION 1: ROOT VARIABLES
-   Define all colors, spacing, and transitions here
+   Main color: ORANGE
    ══════════════════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Primary Brand Colors */
-  --green:            #76b900;
-  --green-light:      #8ed100;
-  --green-glow:       rgba(118, 185, 0, 0.6);
-  --green-soft:       rgba(118, 185, 0, 0.15);
+  /* Primary Brand Colors - ORANGE */
+  --primary:          #ff6b2d;
+  --primary-light:    #ff8c5a;
+  --primary-glow:     rgba(255, 107, 45, 0.6);
+  --primary-soft:     rgba(255, 107, 45, 0.15);
 
   /* Accent Colors */
   --cyan:             #00d4ff;
   --cyan-glow:        rgba(0, 212, 255, 0.6);
   --purple:           #b14eff;
   --purple-glow:      rgba(177, 78, 255, 0.6);
-  --pink:             #ff2d92;
-  --orange:           #ff6b2d;
+  --green:            #76b900;
+  --green-glow:       rgba(118, 185, 0, 0.6);
   --red:              #ff3b3b;
 
-  /* Background Colors */
-  --black:            #000000;
-  --black-soft:       #0a0a0a;
-  --black-card:       #111111;
-  --black-hover:      #1a1a1a;
-  --black-input:      #0d0d0d;
+  /* Background Colors - DARK MODE DEFAULT */
+  --bg:               #000000;
+  --bg-soft:          #0a0a0a;
+  --bg-card:          #111111;
+  --bg-hover:         #1a1a1a;
 
   /* Text Colors */
-  --white:            #ffffff;
-  --gray:             #a0a0a0;
-  --gray-dark:        #666666;
+  --text:             #ffffff;
+  --text-secondary:   #a0a0a0;
+  --text-muted:       #666666;
 
   /* Border Colors */
   --border:           rgba(255, 255, 255, 0.1);
@@ -83,30 +64,62 @@
 }
 
 
+/* ══════════════════════════════════════════════════════════════════════════════
+   LIGHT MODE THEME
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+body.light-mode {
+  --bg:               #ffffff;
+  --bg-soft:          #f5f5f5;
+  --bg-card:          #eeeeee;
+  --bg-hover:         #e0e0e0;
+  --text:             #000000;
+  --text-secondary:   #555555;
+  --text-muted:       #888888;
+  --border:           rgba(0, 0, 0, 0.1);
+  --border-hover:     rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .btn-outline {
+  color: var(--text);
+  border-color: var(--border-hover);
+}
+
+body.light-mode .btn-outline:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+body.light-mode .scroll-indicator {
+  color: var(--text-muted);
+}
 
 
 /* ══════════════════════════════════════════════════════════════════════════════
    SECTION 2: RESET & BASE
-   Clean slate for consistent styling
    ══════════════════════════════════════════════════════════════════════════════ */
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--black);
-  color: var(--white);
+  background: var(--bg);
+  color: var(--text);
   font-family: 'Inter', -apple-system, sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  transition: background var(--speed-normal), color var(--speed-normal);
 }
 
 a {
@@ -124,41 +137,25 @@ button {
   cursor: pointer;
 }
 
-
+p, h1, h2, h3, h4, h5, h6 {
+  max-width: 100%;
+}
 
 
 /* ══════════════════════════════════════════════════════════════════════════════
    SECTION 3: CONTAINER & LAYOUT
-   Page structure and grid systems
    ══════════════════════════════════════════════════════════════════════════════ */
-
-/*
-   USAGE:
-   <div class="container">
-     Your centered content here (max 1200px)
-   </div>
-*/
 
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  overflow: hidden;
 }
 
 .container-sm  { max-width: 800px; }
 .container-lg  { max-width: 1400px; }
-.container-full { max-width: 100%; padding: 0 5%; }
-
-
-/*
-   USAGE:
-   <div class="grid grid-3">
-     <div>Item 1</div>
-     <div>Item 2</div>
-     <div>Item 3</div>
-   </div>
-*/
 
 .grid {
   display: grid;
@@ -178,22 +175,9 @@ button {
 }
 
 
-
-
 /* ══════════════════════════════════════════════════════════════════════════════
    SECTION 4: TYPOGRAPHY
-   Headings, text styles, and special effects
    ══════════════════════════════════════════════════════════════════════════════ */
-
-/*
-   HEADINGS
-   --------
-   USAGE:
-   <h1 class="h-xl">Extra Large Heading</h1>
-   <h2 class="h-lg">Large Heading</h2>
-   <h3 class="h-md">Medium Heading</h3>
-   <h4 class="h-sm">Small Heading</h4>
-*/
 
 .h-xl {
   font-size: clamp(3rem, 8vw, 7rem);
@@ -221,32 +205,14 @@ button {
   line-height: 1.3;
 }
 
+.text-lg { font-size: 1.25rem; color: var(--text-secondary); line-height: 1.7; }
+.text-md { font-size: 1rem; color: var(--text-secondary); line-height: 1.6; }
+.text-sm { font-size: 0.875rem; color: var(--text-muted); }
 
-/*
-   BODY TEXT
-   ---------
-   USAGE:
-   <p class="text-lg">Large paragraph text</p>
-   <p class="text-md">Normal paragraph text</p>
-   <p class="text-sm">Small text</p>
-*/
-
-.text-lg { font-size: 1.25rem; color: var(--gray); line-height: 1.7; }
-.text-md { font-size: 1rem; color: var(--gray); line-height: 1.6; }
-.text-sm { font-size: 0.875rem; color: var(--gray-dark); }
-
-
-/*
-   GLOWING TEXT
-   ------------
-   USAGE:
-   <span class="glow-green">Glowing Green Text</span>
-   <span class="glow-cyan">Glowing Cyan Text</span>
-*/
-
-.glow-green {
-  color: var(--green);
-  text-shadow: 0 0 20px var(--green-glow), 0 0 40px var(--green-glow);
+/* Glowing Text */
+.glow-primary {
+  color: var(--primary);
+  text-shadow: 0 0 20px var(--primary-glow), 0 0 40px var(--primary-glow);
 }
 
 .glow-cyan {
@@ -259,16 +225,9 @@ button {
   text-shadow: 0 0 20px var(--purple-glow), 0 0 40px var(--purple-glow);
 }
 
-
-/*
-   GRADIENT TEXT
-   -------------
-   USAGE:
-   <span class="gradient-green">Gradient Text</span>
-*/
-
-.gradient-green {
-  background: linear-gradient(135deg, var(--green), var(--green-light));
+/* Gradient Text */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -281,96 +240,11 @@ button {
   background-clip: text;
 }
 
-.gradient-fire {
-  background: linear-gradient(135deg, var(--orange), var(--pink));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-
-
-/* ══════════════════════════════════════════════════════════════════════════════
-   TEXT COLORS
-   Simple color classes for any text
-   ══════════════════════════════════════════════════════════════════════════════ */
-
-/*
-   USAGE:
-   <h1 class="h-xl text-green">Green Heading</h1>
-   <h2 class="h-lg text-cyan">Cyan Heading</h2>
-   <p class="text-md text-white">White paragraph</p>
-*/
-
-/* ── SOLID COLORS (No glow) ── */
-.text-white   { color: var(--white); }
-.text-green   { color: var(--green); }
-.text-cyan    { color: var(--cyan); }
-.text-purple  { color: var(--purple); }
-.text-pink    { color: var(--pink); }
-.text-orange  { color: var(--orange); }
-.text-red     { color: var(--red); }
-.text-gray    { color: var(--gray); }
-
-
-/* ── CUSTOM HEX COLORS ── */
-/* Add your own colors here */
-.text-blue    { color: #3b82f6; }
-.text-yellow  { color: #fbbf24; }
-.text-teal    { color: #2a9a46; }
-
-
-/* ── GLOWING COLORS (With shadow effect) ── */
-.text-green-glow {
-  color: var(--green);
-  text-shadow: 0 0 20px var(--green-glow), 0 0 40px var(--green-glow);
-}
-
-.text-cyan-glow {
-  color: var(--cyan);
-  text-shadow: 0 0 20px var(--cyan-glow), 0 0 40px var(--cyan-glow);
-}
-
-.text-purple-glow {
-  color: var(--purple);
-  text-shadow: 0 0 20px var(--purple-glow), 0 0 40px var(--purple-glow);
-}
-
-.text-pink-glow {
-  color: var(--pink);
-  text-shadow: 0 0 20px rgba(255, 45, 146, 0.6), 0 0 40px rgba(255, 45, 146, 0.6);
-}
 
 /* ══════════════════════════════════════════════════════════════════════════════
    SECTION 5: BUTTONS
-   All button styles and variations
    ══════════════════════════════════════════════════════════════════════════════ */
 
-/*
-   ┌─────────────────────────────────────────────────────────────────────────────┐
-   │  BUTTON USAGE EXAMPLES                                                      │
-   ├─────────────────────────────────────────────────────────────────────────────┤
-   │                                                                             │
-   │  BASIC BUTTONS:                                                             │
-   │  <a href="YOUR_LINK" class="btn btn-green">Green Button</a>                 │
-   │  <a href="YOUR_LINK" class="btn btn-white">White Button</a>                 │
-   │  <a href="YOUR_LINK" class="btn btn-outline">Outline Button</a>             │
-   │                                                                             │
-   │  WITH SIZES:                                                                │
-   │  <a href="YOUR_LINK" class="btn btn-green btn-lg">Large Button</a>          │
-   │  <a href="YOUR_LINK" class="btn btn-green btn-sm">Small Button</a>          │
-   │                                                                             │
-   │  FULL WIDTH:                                                                │
-   │  <a href="YOUR_LINK" class="btn btn-green btn-block">Full Width</a>         │
-   │                                                                             │
-   │  WITH ICON (use any emoji or icon):                                         │
-   │  <a href="YOUR_LINK" class="btn btn-green">Learn More →</a>                 │
-   │                                                                             │
-   └─────────────────────────────────────────────────────────────────────────────┘
-*/
-
-
-/* Base Button Style */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -387,251 +261,56 @@ button {
   transition: all var(--speed-normal);
   position: relative;
   overflow: hidden;
+  font-family: inherit;
 }
 
-
-/* ── GREEN BUTTON (Primary) ── */
-.btn-green {
-  background: var(--green);
-  color: var(--black);
-  border-color: var(--green);
+.btn-primary {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
 }
 
-.btn-green:hover {
-  background: var(--green-light);
-  border-color: var(--green-light);
-  box-shadow: 0 0 30px var(--green-glow), 0 5px 20px rgba(0, 0, 0, 0.3);
+.btn-primary:hover {
+  background: var(--primary-light);
+  border-color: var(--primary-light);
+  box-shadow: 0 0 30px var(--primary-glow);
   transform: translateY(-2px);
 }
 
-.btn-green:active {
-  transform: translateY(0);
-  box-shadow: 0 0 15px var(--green-glow);
-}
-
-
-/* ── WHITE BUTTON ── */
-.btn-white {
-  background: var(--white);
-  color: var(--black);
-  border-color: var(--white);
-}
-
-.btn-white:hover {
-  background: var(--gray);
-  border-color: var(--gray);
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3), 0 5px 20px rgba(0, 0, 0, 0.3);
-  transform: translateY(-2px);
-}
-
-
-/* ── OUTLINE BUTTON (Transparent with border) ── */
 .btn-outline {
   background: transparent;
-  color: var(--white);
+  color: var(--text);
   border-color: var(--border-hover);
 }
 
 .btn-outline:hover {
-  border-color: var(--green);
-  color: var(--green);
-  box-shadow: 0 0 20px var(--green-glow);
+  border-color: var(--primary);
+  color: var(--primary);
+  box-shadow: 0 0 20px var(--primary-glow);
 }
 
-
-/* ── OUTLINE GREEN ── */
-.btn-outline-green {
-  background: transparent;
-  color: var(--green);
-  border-color: var(--green);
-}
-
-.btn-outline-green:hover {
-  background: var(--green);
-  color: var(--black);
-  box-shadow: 0 0 25px var(--green-glow);
-  transform: translateY(-2px);
-}
-
-
-/* ── GHOST BUTTON (Minimal) ── */
-.btn-ghost {
-  background: transparent;
-  color: var(--green);
-  border-color: transparent;
-  padding: 10px 0;
-}
-
-.btn-ghost:hover {
-  text-shadow: 0 0 10px var(--green-glow);
-}
-
-.btn-ghost::after {
-  content: '';
-  position: absolute;
-  bottom: 8px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--green);
-  transition: width var(--speed-normal);
-}
-
-.btn-ghost:hover::after {
-  width: 100%;
-}
-
-
-/* ── GLASS BUTTON (Frosted glass effect) ── */
-.btn-glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  color: var(--white);
-  border-color: var(--border);
-}
-
-.btn-glass:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--green);
-  box-shadow: 0 0 20px var(--green-glow);
-}
-
-
-/* ── CYAN BUTTON ── */
 .btn-cyan {
   background: var(--cyan);
-  color: var(--black);
+  color: #000000;
   border-color: var(--cyan);
 }
 
 .btn-cyan:hover {
-  box-shadow: 0 0 30px var(--cyan-glow), 0 5px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 30px var(--cyan-glow);
   transform: translateY(-2px);
 }
 
-
-/* ── PURPLE BUTTON ── */
-.btn-purple {
-  background: var(--purple);
-  color: var(--white);
-  border-color: var(--purple);
-}
-
-.btn-purple:hover {
-  box-shadow: 0 0 30px var(--purple-glow), 0 5px 20px rgba(0, 0, 0, 0.3);
-  transform: translateY(-2px);
-}
-
-
-/* ── DANGER BUTTON (Red) ── */
-.btn-danger {
-  background: var(--red);
-  color: var(--white);
-  border-color: var(--red);
-}
-
-.btn-danger:hover {
-  box-shadow: 0 0 30px rgba(255, 59, 59, 0.5);
-  transform: translateY(-2px);
-}
-
-
-/* ── GLOW PULSE BUTTON ── */
-.btn-pulse {
-  animation: btnPulse 2s ease-in-out infinite;
-}
-
-@keyframes btnPulse {
-  0%, 100% { box-shadow: 0 0 15px var(--green-glow); }
-  50% { box-shadow: 0 0 35px var(--green-glow); }
-}
-
-
-/* ── BUTTON SIZES ── */
-.btn-sm {
-  padding: 10px 20px;
-  font-size: 0.8rem;
-}
-
-.btn-lg {
-  padding: 18px 44px;
-  font-size: 1.1rem;
-}
-
-.btn-xl {
-  padding: 22px 56px;
-  font-size: 1.2rem;
-}
-
-
-/* ── BUTTON WIDTHS ── */
-.btn-block {
-  width: 100%;
-}
-
-
-/* ── BUTTON WITH ICON ── */
-.btn-icon {
-  padding: 14px;
-  min-width: 50px;
-}
-
-.btn-icon.btn-sm { padding: 10px; min-width: 40px; }
-.btn-icon.btn-lg { padding: 18px; min-width: 60px; }
-
-
-/* ── ROUNDED BUTTON ── */
-.btn-rounded {
-  border-radius: var(--radius-full);
-}
-
-
+.btn-sm { padding: 10px 20px; font-size: 0.8rem; }
+.btn-lg { padding: 18px 44px; font-size: 1.1rem; }
+.btn-block { width: 100%; }
 
 
 /* ══════════════════════════════════════════════════════════════════════════════
    SECTION 6: CARDS
-   Card layouts and styles
    ══════════════════════════════════════════════════════════════════════════════ */
 
-/*
-   ┌─────────────────────────────────────────────────────────────────────────────┐
-   │  CARD USAGE EXAMPLES                                                        │
-   ├─────────────────────────────────────────────────────────────────────────────┤
-   │                                                                             │
-   │  BASIC CARD:                                                                │
-   │  <div class="card">                                                         │
-   │    <h3 class="h-sm">Card Title</h3>                                         │
-   │    <p class="text-md">Card content goes here.</p>                           │
-   │  </div>                                                                     │
-   │                                                                             │
-   │  CARD WITH ICON:                                                            │
-   │  <div class="card">                                                         │
-   │    <div class="card-icon">⚡</div>                                          │
-   │    <h3 class="h-sm">Title</h3>                                              │
-   │    <p class="text-md">Description</p>                                       │
-   │  </div>                                                                     │
-   │                                                                             │
-   │  CARD WITH IMAGE:                                                           │
-   │  <div class="card card-image">                                              │
-   │    <img src="image.jpg" alt="" class="card-img">                            │
-   │    <div class="card-body">                                                  │
-   │      <h3 class="h-sm">Title</h3>                                            │
-   │      <p class="text-md">Description</p>                                     │
-   │    </div>                                                                   │
-   │  </div>                                                                     │
-   │                                                                             │
-   │  CARD VARIANTS:                                                             │
-   │  <div class="card card-glow">...</div>    (Top glow on hover)               │
-   │  <div class="card card-glass">...</div>   (Frosted glass)                   │
-   │  <div class="card card-border">...</div>  (Glowing border)                  │
-   │                                                                             │
-   └─────────────────────────────────────────────────────────────────────────────┘
-*/
-
-
-/* ── BASE CARD ── */
 .card {
-  background: var(--black-card);
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 2rem;
@@ -639,13 +318,11 @@ button {
 }
 
 .card:hover {
-  background: var(--black-hover);
+  background: var(--bg-hover);
   border-color: var(--border-hover);
-  transform: translateY(-5px);
+  transform: translateY(-3px);
 }
 
-
-/* ── CARD WITH TOP GLOW ── */
 .card-glow {
   position: relative;
   overflow: hidden;
@@ -658,7 +335,7 @@ button {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--green), transparent);
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
   opacity: 0;
   transition: opacity var(--speed-normal);
 }
@@ -667,341 +344,330 @@ button {
   opacity: 1;
 }
 
-.card-glow:hover {
-  border-color: var(--green-soft);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-}
-
-
-/* ── GLASS CARD ── */
 .card-glass {
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border);
 }
 
-.card-glass:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: var(--border-hover);
-}
-
-
-/* ── BORDER GLOW CARD ── */
-.card-border {
-  border: 1px solid var(--green);
-  box-shadow: 0 0 20px var(--green-soft);
-}
-
-.card-border:hover {
-  box-shadow: 0 0 30px var(--green-glow);
-}
-
-
-/* ── FEATURE CARD (Highlighted) ── */
 .card-feature {
-  background: linear-gradient(180deg, var(--green-soft) 0%, transparent 100%);
-  border: 1px solid var(--green);
-  border-radius: var(--radius-xl);
-  padding: 3rem 2rem;
-  text-align: center;
+  background: linear-gradient(135deg, var(--primary-soft), transparent);
+  border: 1px solid var(--primary);
 }
-
-
-/* ── DARK CARD ── */
-.card-dark {
-  background: var(--black);
-  border: 1px solid var(--border);
-}
-
-
-/* ── CARD ICON ── */
-.card-icon {
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--green-soft);
-  border: 1px solid var(--green);
-  border-radius: var(--radius-md);
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  transition: all var(--speed-normal);
-}
-
-.card:hover .card-icon {
-  box-shadow: 0 0 20px var(--green-glow);
-}
-
-.card-icon-cyan {
-  background: rgba(0, 212, 255, 0.1);
-  border-color: var(--cyan);
-}
-
-.card-icon-purple {
-  background: rgba(177, 78, 255, 0.1);
-  border-color: var(--purple);
-}
-
-.card-icon-lg {
-  width: 80px;
-  height: 80px;
-  font-size: 2rem;
-}
-
-
-/* ── CARD WITH IMAGE ── */
-.card-image {
-  padding: 0;
-  overflow: hidden;
-}
-
-.card-img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.card-body {
-  padding: 1.5rem;
-}
-
-
-/* ── CARD SIZES ── */
-.card-sm { padding: 1.25rem; }
-.card-lg { padding: 3rem; }
-
-
 
 
 /* ══════════════════════════════════════════════════════════════════════════════
-   SECTION 7: VIDEO SECTIONS
-   Full-screen video backgrounds with text overlay
+   SECTION 7: BADGES
    ══════════════════════════════════════════════════════════════════════════════ */
 
-/*
-   ┌─────────────────────────────────────────────────────────────────────────────┐
-   │  VIDEO SECTION USAGE                                                        │
-   ├─────────────────────────────────────────────────────────────────────────────┤
-   │                                                                             │
-   │  BASIC VIDEO SECTION:                                                       │
-   │                                                                             │
-   │  <section class="video-section">                                            │
-   │    <div class="video-bg opacity-20">                                        │
-   │      <video autoplay muted loop playsinline>                                │
-   │        <source src="YOUR_VIDEO.mp4" type="video/mp4">                       │
-   │      </video>                                                               │
-   │    </div>                                                                   │
-   │    <div class="video-overlay overlay-gradient"></div>                       │
-   │    <div class="video-content">                                              │
-   │      <h1 class="h-xl">YOUR HEADING</h1>                                     │
-   │      <p class="text-lg">Your description text here.</p>                     │
-   │      <a href="YOUR_LINK" class="btn btn-green">Button Text</a>              │
-   │    </div>                                                                   │
-   │  </section>                                                                 │
-   │                                                                             │
-   │  HEIGHT OPTIONS:                                                            │
-   │  class="video-section"            (Full screen - 100vh)                     │
-   │  class="video-section h-80"       (80% screen height)                       │
-   │  class="video-section h-70"       (70% screen height)                       │
-   │  class="video-section h-50"       (50% screen height)                       │
-   │                                                                             │
-   │  OPACITY OPTIONS:                                                           │
-   │  class="video-bg opacity-10"      (Very subtle)                             │
-   │  class="video-bg opacity-20"      (Subtle - Recommended)                    │
-   │  class="video-bg opacity-30"      (Medium)                                  │
-   │  class="video-bg opacity-40"      (Visible)                                 │
-   │  class="video-bg opacity-50"      (Strong)                                  │
-   │                                                                             │
-   │  OVERLAY OPTIONS:                                                           │
-   │  class="video-overlay overlay-dark"         (Simple dark)                   │
-   │  class="video-overlay overlay-gradient"     (Top & bottom fade)             │
-   │  class="video-overlay overlay-bottom"       (Fade at bottom)                │
-   │  class="video-overlay overlay-green"        (Green tint)                    │
-   │  class="video-overlay overlay-radial"       (Center spotlight)              │
-   │                                                                             │
-   │  CONTENT POSITION:                                                          │
-   │  class="video-content"                      (Centered)                      │
-   │  class="video-content content-left"         (Left aligned)                  │
-   │  class="video-content content-right"        (Right aligned)                 │
-   │  class="video-content content-bottom"       (Bottom aligned)                │
-   │                                                                             │
-   └─────────────────────────────────────────────────────────────────────────────┘
-*/
+.badge {
+  display: inline-block;
+  padding: 6px 16px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border-radius: var(--radius-full);
+  background: var(--primary-soft);
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.badge-cyan {
+  background: rgba(0, 212, 255, 0.15);
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+.badge-purple {
+  background: rgba(177, 78, 255, 0.15);
+  color: var(--purple);
+  border-color: var(--purple);
+}
+
+.badge-solid {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
 
 
-/* ── VIDEO SECTION CONTAINER ── */
-.video-section {
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 8: SECTIONS & BACKGROUNDS
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.section {
+  padding: 100px 0;
   position: relative;
+}
+
+.section-sm { padding: 60px 0; }
+.section-lg { padding: 140px 0; }
+
+.bg-dark    { background: var(--bg); }
+.bg-darker  { background: var(--bg-soft); }
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 9: THEME TOGGLE
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.theme-toggle-bar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px 5%;
+  background: var(--bg);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 8px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--speed-normal);
+}
+
+.theme-toggle:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.theme-toggle-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 10: UTILITIES
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.flex              { display: flex; }
+.flex-col          { flex-direction: column; }
+.flex-wrap         { flex-wrap: wrap; }
+.items-center      { align-items: center; }
+.items-start       { align-items: flex-start; }
+.justify-center    { justify-content: center; }
+.justify-between   { justify-content: space-between; }
+.justify-end       { justify-content: flex-end; }
+
+.gap-1 { gap: 0.5rem; }
+.gap-2 { gap: 1rem; }
+.gap-3 { gap: 1.5rem; }
+.gap-4 { gap: 2rem; }
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+.mt-5 { margin-top: 3rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+.mb-5 { margin-bottom: 3rem; }
+
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+
+.w-full  { width: 100%; }
+.max-w-sm { max-width: 400px; }
+.max-w-md { max-width: 600px; }
+.max-w-lg { max-width: 800px; }
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 11: DIVIDERS
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.divider {
+  height: 1px;
   width: 100%;
-  min-height: 100vh;
+  background: var(--border);
+  margin: 2rem 0;
+}
+
+.divider-glow {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  margin: 2rem 0;
+}
+
+.divider-thick {
+  height: 4px;
+  width: 60px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 12: NUM HIGHLIGHT
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.num-highlight {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1.25rem;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 13: TIMELINE
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--primary), var(--cyan), var(--purple), var(--green));
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -33px;
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  background: var(--primary);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--primary-glow);
+}
+
+.timeline-item:nth-child(2) .timeline-dot { 
+  background: var(--cyan); 
+  box-shadow: 0 0 15px var(--cyan-glow); 
+}
+
+.timeline-item:nth-child(3) .timeline-dot { 
+  background: var(--purple); 
+  box-shadow: 0 0 15px var(--purple-glow); 
+}
+
+.timeline-item:nth-child(4) .timeline-dot { 
+  background: var(--green); 
+  box-shadow: 0 0 15px var(--green-glow); 
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 14: FEATURE LIST
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.feature-list li:last-child {
+  border-bottom: none;
+}
+
+.feature-icon {
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--primary-soft);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  flex-shrink: 0;
+  color: var(--primary);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 15: MARQUEE
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.marquee {
   overflow: hidden;
+  white-space: nowrap;
+  padding: 1rem 0;
+  background: var(--bg-soft);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
-.video-section.h-80 { min-height: 80vh; }
-.video-section.h-70 { min-height: 70vh; }
-.video-section.h-50 { min-height: 50vh; }
-
-
-/* ── VIDEO BACKGROUND ── */
-.video-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+.marquee-track {
+  display: inline-flex;
+  animation: marqueeScroll 30s linear infinite;
 }
 
-.video-bg video,
-.video-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.marquee-item {
+  padding: 0 3rem;
+  font-size: 1rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-/* Hide video controls */
-.video-bg video::-webkit-media-controls { display: none !important; }
-.video-bg video { pointer-events: none; }
-
-
-/* ── VIDEO OPACITY LEVELS ── */
-.video-bg.opacity-10 video, .video-bg.opacity-10 img { opacity: 0.1; }
-.video-bg.opacity-15 video, .video-bg.opacity-15 img { opacity: 0.15; }
-.video-bg.opacity-20 video, .video-bg.opacity-20 img { opacity: 0.2; }
-.video-bg.opacity-25 video, .video-bg.opacity-25 img { opacity: 0.25; }
-.video-bg.opacity-30 video, .video-bg.opacity-30 img { opacity: 0.3; }
-.video-bg.opacity-40 video, .video-bg.opacity-40 img { opacity: 0.4; }
-.video-bg.opacity-50 video, .video-bg.opacity-50 img { opacity: 0.5; }
-
-
-/* ── VIDEO OVERLAYS ── */
-.video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
+.marquee-item span {
+  color: var(--primary);
 }
 
-.overlay-dark {
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.overlay-darker {
-  background: rgba(0, 0, 0, 0.7);
-}
-
-.overlay-gradient {
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(0, 0, 0, 0.3) 50%,
-    rgba(0, 0, 0, 0.8) 100%
-  );
-}
-
-.overlay-bottom {
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(0, 0, 0, 0.9) 100%
-  );
-}
-
-.overlay-top {
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.9) 0%,
-    transparent 100%
-  );
-}
-
-.overlay-green {
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.7) 0%,
-    rgba(118, 185, 0, 0.15) 100%
-  );
-}
-
-.overlay-cyan {
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.7) 0%,
-    rgba(0, 212, 255, 0.15) 100%
-  );
-}
-
-.overlay-purple {
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.7) 0%,
-    rgba(177, 78, 255, 0.15) 100%
-  );
-}
-
-.overlay-radial {
-  background: radial-gradient(
-    ellipse at center,
-    transparent 0%,
-    rgba(0, 0, 0, 0.8) 100%
-  );
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 
-/* ── VIDEO CONTENT ── */
-.video-content {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  max-width: 1200px;
-  padding: 0 20px;
-  text-align: center;
-}
-
-.content-left {
-  text-align: left;
-  margin-right: auto;
-}
-
-.content-right {
-  text-align: right;
-  margin-left: auto;
-}
-
-.content-bottom {
-  position: absolute;
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-
-/* ── SCROLL INDICATOR ── */
-/*
-   USAGE:
-   <div class="scroll-indicator">
-     <span>Scroll</span>
-     <div class="scroll-line"></div>
-   </div>
-*/
+/* ══════════════════════════════════════════════════════════════════════════════
+   SECTION 16: SCROLL INDICATOR
+   ══════════════════════════════════════════════════════════════════════════════ */
 
 .scroll-indicator {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  color: var(--gray);
+  color: var(--text-muted);
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -1010,183 +676,20 @@ button {
 .scroll-line {
   width: 1px;
   height: 50px;
-  background: linear-gradient(180deg, var(--green), transparent);
+  background: linear-gradient(180deg, var(--primary), transparent);
   animation: scrollPulse 2s ease-in-out infinite;
 }
 
 @keyframes scrollPulse {
-  0%, 100% { 
-    opacity: 1; 
-    height: 50px; 
-  }
-  50% { 
-    opacity: 0.3; 
-    height: 30px; 
-  }
+  0%, 100% { opacity: 1; height: 50px; }
+  50% { opacity: 0.3; height: 30px; }
 }
 
 
-
-
 /* ══════════════════════════════════════════════════════════════════════════════
-   SECTION 8: UTILITIES
-   Helper classes for spacing, flexbox, and alignment
+   SECTION 17: ANIMATIONS
    ══════════════════════════════════════════════════════════════════════════════ */
 
-/*
-   ┌─────────────────────────────────────────────────────────────────────────────┐
-   │  UTILITY CLASSES REFERENCE                                                  │
-   ├─────────────────────────────────────────────────────────────────────────────┤
-   │                                                                             │
-   │  FLEXBOX:                                                                   │
-   │  class="flex"                 (Display flex)                                │
-   │  class="flex-col"             (Flex column)                                 │
-   │  class="items-center"         (Align items center)                          │
-   │  class="justify-center"       (Justify content center)                      │
-   │  class="justify-between"      (Space between)                               │
-   │  class="gap-1" to "gap-5"     (Gap spacing)                                 │
-   │                                                                             │
-   │  SPACING (Margin):                                                          │
-   │  class="mt-1" to "mt-6"       (Margin top)                                  │
-   │  class="mb-1" to "mb-6"       (Margin bottom)                               │
-   │  class="mx-auto"              (Center horizontally)                         │
-   │                                                                             │
-   │  SPACING (Padding):                                                         │
-   │  class="p-1" to "p-6"         (Padding all sides)                           │
-   │  class="py-1" to "py-6"       (Padding top & bottom)                        │
-   │  class="px-1" to "px-6"       (Padding left & right)                        │
-   │                                                                             │
-   │  TEXT:                                                                      │
-   │  class="text-center"          (Center text)                                 │
-   │  class="text-left"            (Left align)                                  │
-   │  class="text-right"           (Right align)                                 │
-   │                                                                             │
-   │  WIDTH:                                                                     │
-   │  class="w-full"               (100% width)                                  │
-   │  class="max-w-sm"             (Max 400px)                                   │
-   │  class="max-w-md"             (Max 600px)                                   │
-   │  class="max-w-lg"             (Max 800px)                                   │
-   │                                                                             │
-   └─────────────────────────────────────────────────────────────────────────────┘
-*/
-
-
-/* ── FLEXBOX ── */
-.flex              { display: flex; }
-.flex-col          { flex-direction: column; }
-.flex-wrap         { flex-wrap: wrap; }
-.items-center      { align-items: center; }
-.items-start       { align-items: flex-start; }
-.items-end         { align-items: flex-end; }
-.justify-center    { justify-content: center; }
-.justify-between   { justify-content: space-between; }
-.justify-start     { justify-content: flex-start; }
-.justify-end       { justify-content: flex-end; }
-
-.gap-1 { gap: 0.5rem; }
-.gap-2 { gap: 1rem; }
-.gap-3 { gap: 1.5rem; }
-.gap-4 { gap: 2rem; }
-.gap-5 { gap: 3rem; }
-
-
-/* ── MARGIN ── */
-.mt-1 { margin-top: 0.5rem; }
-.mt-2 { margin-top: 1rem; }
-.mt-3 { margin-top: 1.5rem; }
-.mt-4 { margin-top: 2rem; }
-.mt-5 { margin-top: 3rem; }
-.mt-6 { margin-top: 4rem; }
-
-.mb-1 { margin-bottom: 0.5rem; }
-.mb-2 { margin-bottom: 1rem; }
-.mb-3 { margin-bottom: 1.5rem; }
-.mb-4 { margin-bottom: 2rem; }
-.mb-5 { margin-bottom: 3rem; }
-.mb-6 { margin-bottom: 4rem; }
-
-.mx-auto { margin-left: auto; margin-right: auto; }
-
-
-/* ── PADDING ── */
-.p-1 { padding: 0.5rem; }
-.p-2 { padding: 1rem; }
-.p-3 { padding: 1.5rem; }
-.p-4 { padding: 2rem; }
-.p-5 { padding: 3rem; }
-.p-6 { padding: 4rem; }
-
-.py-1 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
-.py-2 { padding-top: 1rem; padding-bottom: 1rem; }
-.py-3 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
-.py-4 { padding-top: 2rem; padding-bottom: 2rem; }
-.py-5 { padding-top: 3rem; padding-bottom: 3rem; }
-.py-6 { padding-top: 4rem; padding-bottom: 4rem; }
-
-.px-1 { padding-left: 0.5rem; padding-right: 0.5rem; }
-.px-2 { padding-left: 1rem; padding-right: 1rem; }
-.px-3 { padding-left: 1.5rem; padding-right: 1.5rem; }
-.px-4 { padding-left: 2rem; padding-right: 2rem; }
-.px-5 { padding-left: 3rem; padding-right: 3rem; }
-
-
-/* ── TEXT ALIGNMENT ── */
-.text-center { text-align: center; }
-.text-left   { text-align: left; }
-.text-right  { text-align: right; }
-
-
-/* ── WIDTH ── */
-.w-full  { width: 100%; }
-.max-w-xs { max-width: 300px; }
-.max-w-sm { max-width: 400px; }
-.max-w-md { max-width: 600px; }
-.max-w-lg { max-width: 800px; }
-.max-w-xl { max-width: 1000px; }
-
-
-/* ── DISPLAY ── */
-.hidden { display: none; }
-.block  { display: block; }
-
-
-/* ── POSITION ── */
-.relative { position: relative; }
-.absolute { position: absolute; }
-
-
-
-
-/* ══════════════════════════════════════════════════════════════════════════════
-   SECTION 9: ANIMATIONS
-   Scroll reveal and other animations
-   ══════════════════════════════════════════════════════════════════════════════ */
-
-/*
-   ┌─────────────────────────────────────────────────────────────────────────────┐
-   │  ANIMATION USAGE                                                            │
-   ├─────────────────────────────────────────────────────────────────────────────┤
-   │                                                                             │
-   │  SCROLL REVEAL (Add these classes, JS activates them on scroll):            │
-   │  class="reveal"               (Fade up)                                     │
-   │  class="reveal-left"          (Slide from left)                             │
-   │  class="reveal-right"         (Slide from right)                            │
-   │  class="reveal-scale"         (Scale up)                                    │
-   │                                                                             │
-   │  DELAYS (Combine with reveal):                                              │
-   │  class="reveal delay-1"       (0.1s delay)                                  │
-   │  class="reveal delay-2"       (0.2s delay)                                  │
-   │  class="reveal delay-3"       (0.3s delay)                                  │
-   │                                                                             │
-   │  ALWAYS-ON ANIMATIONS:                                                      │
-   │  class="animate-pulse"        (Pulsing glow)                                │
-   │  class="animate-float"        (Floating up/down)                            │
-   │                                                                             │
-   └─────────────────────────────────────────────────────────────────────────────┘
-*/
-
-
-/* ── SCROLL REVEAL (Hidden by default, JS adds .active) ── */
 .reveal {
   opacity: 0;
   transform: translateY(50px);
@@ -1220,295 +723,6 @@ button {
   transform: translateX(0);
 }
 
-.reveal-scale {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-}
-
-.reveal-scale.active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-
-/* ── ANIMATION DELAYS ── */
-.delay-1 { transition-delay: 0.1s; }
-.delay-2 { transition-delay: 0.2s; }
-.delay-3 { transition-delay: 0.3s; }
-.delay-4 { transition-delay: 0.4s; }
-.delay-5 { transition-delay: 0.5s; }
-
-
-/* ── ALWAYS-ON ANIMATIONS ── */
-.animate-pulse {
-  animation: pulseGlow 2s ease-in-out infinite;
-}
-
-@keyframes pulseGlow {
-  0%, 100% { 
-    box-shadow: 0 0 15px var(--green-glow); 
-  }
-  50% { 
-    box-shadow: 0 0 40px var(--green-glow); 
-  }
-}
-
-.animate-float {
-  animation: floatUpDown 4s ease-in-out infinite;
-}
-
-@keyframes floatUpDown {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-}
-
-
-
-
-/* ══════════════════════════════════════════════════════════════════════════════
-   SECTION 10: BADGES & TAGS
-   Small labels for categories, status, etc.
-   ══════════════════════════════════════════════════════════════════════════════ */
-
-/*
-   USAGE:
-   <span class="badge">Default Badge</span>
-   <span class="badge badge-cyan">Cyan Badge</span>
-   <span class="badge badge-solid">Solid Badge</span>
-*/
-
-.badge {
-  display: inline-block;
-  padding: 6px 16px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  border-radius: var(--radius-full);
-  background: var(--green-soft);
-  color: var(--green);
-  border: 1px solid var(--green);
-}
-
-.badge-cyan {
-  background: rgba(0, 212, 255, 0.15);
-  color: var(--cyan);
-  border-color: var(--cyan);
-}
-
-.badge-purple {
-  background: rgba(177, 78, 255, 0.15);
-  color: var(--purple);
-  border-color: var(--purple);
-}
-
-.badge-pink {
-  background: rgba(255, 45, 146, 0.15);
-  color: var(--pink);
-  border-color: var(--pink);
-}
-
-.badge-solid {
-  background: var(--green);
-  color: var(--black);
-  border-color: var(--green);
-}
-
-.badge-solid-white {
-  background: var(--white);
-  color: var(--black);
-  border-color: var(--white);
-}
-
-
-
-
-/* ══════════════════════════════════════════════════════════════════════════════
-   SECTION 11: DIVIDERS
-   Visual separators
-   ══════════════════════════════════════════════════════════════════════════════ */
-
-/*
-   USAGE:
-   <div class="divider"></div>
-   <div class="divider-glow"></div>
-   <div class="divider-thick"></div>
-*/
-
-.divider {
-  height: 1px;
-  width: 100%;
-  background: var(--border);
-  margin: 2rem 0;
-}
-
-.divider-glow {
-  height: 1px;
-  width: 100%;
-  background: linear-gradient(90deg, transparent, var(--green), transparent);
-  margin: 2rem 0;
-}
-
-.divider-thick {
-  height: 4px;
-  width: 60px;
-  background: var(--green);
-  border-radius: 2px;
-}
-
-.divider-thick-cyan {
-  height: 4px;
-  width: 60px;
-  background: var(--cyan);
-  border-radius: 2px;
-}
-
-
-
-
-/* ══════════════════════════════════════════════════════════════════════════════
-   SECTION 12: SECTION BACKGROUNDS
-   Full-width section styles
-   ══════════════════════════════════════════════════════════════════════════════ */
-
-/*
-   USAGE:
-   <section class="section bg-dark">...</section>
-   <section class="section bg-darker">...</section>
-*/
-
-.section {
-  padding: 100px 0;
-  position: relative;
-}
-
-.section-sm { padding: 60px 0; }
-.section-lg { padding: 140px 0; }
-
-.bg-dark    { background: var(--black); }
-.bg-darker  { background: var(--black-soft); }
-.bg-card    { background: var(--black-card); }
-
-/* ══════════════════════════════════════════════════════════════════════════════
-   THEME TOGGLE: ORANGE/WHITE ALTERNATE THEME
-   ══════════════════════════════════════════════════════════════════════════════ */
-
-/*
-   USAGE:
-   Add class "theme-orange" to <body> to switch themes
-   <body class="theme-orange">
-*/
-
-/* ── OVERRIDE COLORS WHEN ORANGE THEME IS ACTIVE ── */
-body.theme-orange {
-  --green:        #ff6b2d;
-  --green-light:  #ff8c5a;
-  --green-glow:   rgba(255, 107, 45, 0.6);
-  --green-soft:   rgba(255, 107, 45, 0.15);
-  --black:        #ffffff;
-  --black-soft:   #f5f5f5;
-  --black-card:   #eeeeee;
-  --black-hover:  #e0e0e0;
-  --white:        #000000;
-  --gray:         #555555;
-  --gray-dark:    #888888;
-  --border:       rgba(0, 0, 0, 0.1);
-  --border-hover: rgba(0, 0, 0, 0.2);
-}
-
-/* Fix button text on light background */
-body.theme-orange .btn-green {
-  color: #ffffff;
-}
-
-body.theme-orange .btn-white {
-  background: #000000;
-  color: #ffffff;
-  border-color: #000000;
-}
-
-body.theme-orange .btn-white:hover {
-  background: #333333;
-  border-color: #333333;
-}
-
-/* Fix outline button */
-body.theme-orange .btn-outline {
-  color: #000000;
-}
-
-body.theme-orange .btn-outline:hover {
-  color: #ff6b2d;
-}
-
-
-/* ── THEME TOGGLE BUTTON STYLE ── */
-.theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 9999;
-  padding: 12px 20px;
-  background: var(--green);
-  color: var(--black);
-  border: none;
-  border-radius: var(--radius-full);
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--speed-normal);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.theme-toggle:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px var(--green-glow);
-}
-
-.theme-toggle-icon {
-  font-size: 1.1rem;
-}
-
-
-/* ══════════════════════════════════════════════════════════════════════════════
-   ENHANCED ANIMATIONS & EFFECTS
-   ══════════════════════════════════════════════════════════════════════════════ */
-
-/* ── PARALLAX SECTIONS ── */
-.parallax-slow {
-  transition: transform 0.1s ease-out;
-}
-
-/* ── HORIZONTAL SCROLL SECTION ── */
-.horizontal-section {
-  overflow: hidden;
-  padding: 60px 0;
-}
-
-.horizontal-track {
-  display: flex;
-  gap: 1.5rem;
-  padding: 0 5%;
-  transition: transform 0.3s ease-out;
-}
-
-.horizontal-track .card {
-  min-width: 300px;
-  flex-shrink: 0;
-}
-
-/* ── STAGGERED CARD ANIMATIONS ── */
-.stagger-1 { transition-delay: 0.05s; }
-.stagger-2 { transition-delay: 0.1s; }
-.stagger-3 { transition-delay: 0.15s; }
-.stagger-4 { transition-delay: 0.2s; }
-.stagger-5 { transition-delay: 0.25s; }
-.stagger-6 { transition-delay: 0.3s; }
-
-/* ── REVEAL FROM DIFFERENT DIRECTIONS ── */
 .reveal-up {
   opacity: 0;
   transform: translateY(80px);
@@ -1520,20 +734,9 @@ body.theme-orange .btn-outline:hover {
   transform: translateY(0);
 }
 
-.reveal-down {
-  opacity: 0;
-  transform: translateY(-80px);
-  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-}
-
-.reveal-down.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .reveal-zoom {
   opacity: 0;
-  transform: scale(0.8);
+  transform: scale(0.9);
   transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
 }
 
@@ -1542,417 +745,49 @@ body.theme-orange .btn-outline:hover {
   transform: scale(1);
 }
 
-.reveal-rotate {
-  opacity: 0;
-  transform: rotate(-5deg) translateY(30px);
-  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-}
+.stagger-1 { transition-delay: 0.05s; }
+.stagger-2 { transition-delay: 0.1s; }
+.stagger-3 { transition-delay: 0.15s; }
+.stagger-4 { transition-delay: 0.2s; }
+.stagger-5 { transition-delay: 0.25s; }
 
-.reveal-rotate.active {
-  opacity: 1;
-  transform: rotate(0) translateY(0);
-}
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
 
-/* ── COUNTER ANIMATION ── */
-.counter {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  color: var(--green);
-  font-variant-numeric: tabular-nums;
-}
-
-.counter-box {
-  text-align: center;
-  padding: 2rem 1rem;
-}
-
-.counter-label {
-  font-size: 0.85rem;
-  color: var(--gray);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-top: 0.5rem;
-}
-
-/* ── TEXT REVEAL CHARACTER BY CHARACTER ── */
-.text-reveal {
-  opacity: 0;
-}
-
-.text-reveal.active {
-  opacity: 1;
-}
-
-.text-reveal span {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: charReveal 0.5s forwards;
-}
-
-@keyframes charReveal {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ── GLOWING BORDER ANIMATION ── */
-.border-animate {
-  position: relative;
-  overflow: hidden;
-}
-
-.border-animate::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--green), transparent);
-  animation: borderSlide 3s infinite;
-}
-
-@keyframes borderSlide {
-  0% { left: -100%; }
-  50% { left: 100%; }
-  100% { left: 100%; }
-}
-
-/* ── FLOATING ELEMENTS ── */
-.float-slow {
-  animation: floatSlow 6s ease-in-out infinite;
-}
-
-.float-medium {
-  animation: floatMedium 4s ease-in-out infinite;
-}
-
-.float-fast {
-  animation: floatFast 2s ease-in-out infinite;
-}
-
-@keyframes floatSlow {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(2deg); }
-}
-
-@keyframes floatMedium {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-}
-
-@keyframes floatFast {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-/* ── PROGRESS BAR ── */
-.progress-bar {
-  height: 6px;
-  background: var(--border);
-  border-radius: 3px;
-  overflow: hidden;
-  margin-top: 0.5rem;
-}
-
-.progress-fill {
-  height: 100%;
-  background: var(--green);
-  border-radius: 3px;
-  width: 0;
-  transition: width 1.5s ease-out;
-  box-shadow: 0 0 10px var(--green-glow);
-}
-
-.progress-fill.active {
-  width: var(--progress);
-}
-
-/* ── TIMELINE ── */
-.timeline {
-  position: relative;
-  padding-left: 40px;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 15px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(180deg, var(--green), var(--cyan), var(--purple));
-}
-
-.timeline-item {
-  position: relative;
-  padding-bottom: 2rem;
-}
-
-.timeline-item:last-child {
-  padding-bottom: 0;
-}
-
-.timeline-dot {
-  position: absolute;
-  left: -33px;
-  top: 5px;
-  width: 12px;
-  height: 12px;
-  background: var(--green);
-  border-radius: 50%;
-  box-shadow: 0 0 15px var(--green-glow);
-}
-
-.timeline-item:nth-child(2) .timeline-dot { background: var(--cyan); box-shadow: 0 0 15px var(--cyan-glow); }
-.timeline-item:nth-child(3) .timeline-dot { background: var(--purple); box-shadow: 0 0 15px var(--purple-glow); }
-.timeline-item:nth-child(4) .timeline-dot { background: var(--orange); box-shadow: 0 0 15px rgba(255, 107, 45, 0.6); }
-
-/* ── TESTIMONIAL CARD ── */
-.testimonial-card {
-  background: var(--black-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
-  position: relative;
-}
-
-.testimonial-card::before {
-  content: '"';
-  position: absolute;
-  top: 15px;
-  left: 20px;
-  font-size: 4rem;
-  color: var(--green);
-  opacity: 0.3;
-  line-height: 1;
-}
-
-.testimonial-text {
-  font-size: 1.1rem;
-  color: var(--white);
-  font-style: italic;
-  line-height: 1.6;
-}
-
-.testimonial-author {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: var(--gray);
-}
-
-.testimonial-author strong {
-  color: var(--green);
-}
-
-/* ── FEATURE LIST ── */
-.feature-list {
-  list-style: none;
-  padding: 0;
-}
-
-.feature-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.feature-list li:last-child {
-  border-bottom: none;
-}
-
-.feature-icon {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--green-soft);
-  border-radius: var(--radius-sm);
-  font-size: 1.25rem;
-  flex-shrink: 0;
-}
-
-/* ── MARQUEE TEXT ── */
-.marquee {
-  overflow: hidden;
-  white-space: nowrap;
-  padding: 1rem 0;
-  background: var(--black-soft);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.marquee-track {
-  display: inline-flex;
-  animation: marqueeScroll 30s linear infinite;
-}
-
-.marquee-item {
-  padding: 0 3rem;
-  font-size: 1rem;
-  color: var(--gray);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.marquee-item span {
-  color: var(--green);
-}
-
-@keyframes marqueeScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* ── SPLIT TEXT ── */
-.split-text {
-  display: flex;
-  justify-content: center;
-  gap: 0;
-  flex-wrap: wrap;
-}
-
-.split-text .char {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(50px) rotate(10deg);
-  transition: all 0.5s cubic-bezier(0.5, 0, 0, 1);
-}
-
-.split-text.active .char {
-  opacity: 1;
-  transform: translateY(0) rotate(0);
-}
-
-/* ── STICKY SECTION ── */
-.sticky-section {
-  position: sticky;
-  top: 0;
-}
-
-/* ── GLOW CARD ── */
-.glow-card {
-  position: relative;
-  background: var(--black-card);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
-  transition: all 0.3s ease;
-}
-
-.glow-card::after {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  background: linear-gradient(135deg, var(--green), var(--cyan));
-  border-radius: var(--radius-lg);
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.glow-card:hover::after {
-  opacity: 1;
-}
-
-.glow-card:hover {
-  transform: translateY(-5px);
-}
-
-/* ── NUMBER HIGHLIGHT ── */
-.num-highlight {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  background: var(--green);
-  color: var(--black);
-  font-weight: 800;
-  font-size: 1.25rem;
-  border-radius: 50%;
-  margin-bottom: 1rem;
-}
-
-/* ── BENTO GRID ── */
-.bento-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto;
-  gap: 1rem;
-}
-
-.bento-item {
-  background: var(--black-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  transition: all 0.3s ease;
-}
-
-.bento-item:hover {
-  border-color: var(--green);
-  transform: translateY(-3px);
-}
-
-.bento-large {
-  grid-column: span 2;
-}
-
-.bento-tall {
-  grid-row: span 2;
-}
-
-@media (max-width: 768px) {
-  .bento-grid {
-    grid-template-columns: 1fr;
-  }
-  .bento-large, .bento-tall {
-    grid-column: span 1;
-    grid-row: span 1;
-  }
-}
-
-/* ── SCROLL PROGRESS BAR ── */
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: var(--green);
-  box-shadow: 0 0 10px var(--green-glow);
-  z-index: 9999;
-  width: 0%;
-  transition: width 0.1s ease-out;
-}
 
 </style>
-
 </head>
 
 <body>
+
 <!-- ══════════════════════════════════════════════════════════════════════════════
-     NIDUS LANDING PAGE - DENSE VERSION
-     Readable in 3-5 minutes, keeps interest
+     THEME TOGGLE BAR
      ══════════════════════════════════════════════════════════════════════════════ -->
 
+<div class="theme-toggle-bar">
+  <button class="theme-toggle" id="themeToggle">
+    <span class="theme-toggle-icon" id="themeIcon">☀️</span>
+    <span id="themeText">Light Mode</span>
+  </button>
+</div>
 
-<!-- ═══════════ HERO ═══════════ -->
-<section class="section bg-dark" style="min-height: 100vh; display: flex; align-items: center;">
-  <div class="container text-center" style="max-width: 800px;">
+
+<!-- ══════════════════════════════════════════════════════════════════════════════
+     HERO SECTION
+     ══════════════════════════════════════════════════════════════════════════════ -->
+
+<section class="section bg-dark" style="min-height: 95vh; display: flex; align-items: center;">
+  <div class="container text-center" style="max-width: 750px;">
     
     <span class="badge reveal">Mosquito Control Software</span>
     
     <h1 class="h-xl mt-3 reveal delay-1">
-      <span class="gradient-green">NIDUS</span>
+      <span class="gradient-primary">NIDUS</span>
     </h1>
     
-    <p class="h-sm mt-2 reveal delay-2" style="color: var(--white); font-weight: 400;">
+    <p class="h-sm mt-2 reveal delay-2" style="color: var(--text); font-weight: 400;">
       Software for reducing mosquito populations
     </p>
     
@@ -1961,7 +796,7 @@ body.theme-orange .btn-outline:hover {
     </p>
     
     <div class="flex gap-2 justify-center mt-4 reveal delay-4" style="flex-wrap: wrap;">
-      <a href="#contact" class="btn btn-green">Request a Demo</a>
+      <a href="#contact" class="btn btn-primary">Request a Demo</a>
       <a href="#how-it-works" class="btn btn-outline">See How It Works</a>
     </div>
     
@@ -1974,7 +809,455 @@ body.theme-orange .btn-outline:hover {
 </section>
 
 
-<!-- ═══════════ MARQUEE 1 ═══════════ -->
+<!-- ══════════════════════════════════════════════════════════════════════════════
+     THE PROBLEM
+     ══════════════════════════════════════════════════════════════════════════════ -->
+
+<section class="section-sm bg-darker" style="padding: 60px 0;">
+  <div class="container" style="max-width: 1000px;">
+    
+    <div class="grid grid-2" style="gap: 2rem; align-items: center;">
+      
+      <div class="reveal-left">
+        <span class="badge" style="background: rgba(255, 59, 59, 0.15); color: #ff3b3b; border-color: #ff3b3b;">The Problem</span>
+        <h2 class="h-md mt-2" style="color: var(--text);">Mosquito Control Is Hard</h2>
+        <p class="text-sm mt-2">
+          Not because the work is complicated. Because the knowledge is scattered. Observations live in notebooks. Experience lives in people's heads. When staff leave, knowledge walks out the door.
+        </p>
+      </div>
+      
+      <div class="reveal-right">
+        <div class="grid grid-2" style="gap: 0.75rem;">
+          <div class="card" style="padding: 1rem; border-left: 3px solid #ff3b3b;">
+            <p class="text-sm" style="color: var(--text);">Scattered observations</p>
+          </div>
+          <div class="card" style="padding: 1rem; border-left: 3px solid #ff3b3b;">
+            <p class="text-sm" style="color: var(--text);">Lost institutional knowledge</p>
+          </div>
+          <div class="card" style="padding: 1rem; border-left: 3px solid #ff3b3b;">
+            <p class="text-sm" style="color: var(--text);">Reactive instead of proactive</p>
+          </div>
+          <div class="card" style="padding: 1rem; border-left: 3px solid #ff3b3b;">
+            <p class="text-sm" style="color: var(--text);">Same problems repeat yearly</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════════════
+     WHAT NIDUS IS
+     ══════════════════════════════════════════════════════════════════════════════ -->
+
+<section id="how-it-works" class="section-sm bg-dark" style="padding: 60px 0;">
+  <div class="container" style="max-width: 1000px;">
+    <!-- ══════════════════════════════════════════════════════════════════════════════
+     WHAT NIDUS IS
+     ══════════════════════════════════════════════════════════════════════════════ -->
+
+<section id="how-it-works" class="section-sm bg-dark" style="padding: 60px 0;">
+  <div class="container" style="max-width: 1000px;">
+    
+    <div class="text-center mb-4">
+      <span class="badge reveal">The Solution</span>
+      <h2 class="h-md mt-2 reveal-up">What Nidus Is</h2>
+    </div>
+    
+    <div class="grid grid-3" style="gap: 1rem;">
+      
+      <div class="card reveal-up stagger-1" style="padding: 1.25rem; border-top: 3px solid var(--primary);">
+        <h3 class="text-md" style="color: var(--primary); font-weight: 600;">Capture System</h3>
+        <p class="text-sm mt-2">
+          A system for capturing and retaining operational observations. Every observation recorded and preserved. Nothing lost to notebooks or memory.
+        </p>
+      </div>
+      
+      <div class="card reveal-up stagger-2" style="padding: 1.25rem; border-top: 3px solid var(--cyan);">
+        <h3 class="text-md" style="color: var(--cyan); font-weight: 600;">Shared Record</h3>
+        <p class="text-sm mt-2">
+          A shared record that supports coordination across people and time. Everyone sees the same operational picture. New staff inherit existing knowledge.
+        </p>
+      </div>
+      
+      <div class="card reveal-up stagger-3" style="padding: 1.25rem; border-top: 3px solid var(--purple);">
+        <h3 class="text-md" style="color: var(--purple); font-weight: 600;">Learning Foundation</h3>
+        <p class="text-sm mt-2">
+          A foundation for learning what actions reduce mosquito production. Patterns emerge over time. Knowledge compounds with each season.
+        </p>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════════════
+     HOW IT WORKS - TIMELINE
+     ══════════════════════════════════════════════════════════════════════════════ -->
+
+<section class="section-sm bg-darker" style="padding: 60px 0;">
+  <div class="container" style="max-width: 900px;">
+    
+    <div class="text-center mb-4">
+      <span class="badge badge-purple reveal">Process</span>
+      <h2 class="h-md mt-2 reveal-up">How It Works</h2>
+    </div>
+    
+    <div class="grid grid-2" style="gap: 2rem; align-items: start;">
+      
+      <!-- Timeline -->
+      <div class="timeline reveal-left">
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <h4 class="text-md" style="color: var(--primary); font-weight: 600;">Capture</h4>
+            <p class="text-sm mt-1">Observations from field and community recorded, timestamped, geolocated. Every data point preserved.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <h4 class="text-md" style="color: var(--cyan); font-weight: 600;">Organize</h4>
+            <p class="text-sm mt-1">Information organized into shared operational picture. Real-time updates. Everyone sees the same reality.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <h4 class="text-md" style="color: var(--purple); font-weight: 600;">Understand</h4>
+            <p class="text-sm mt-1">Patterns emerge. Causes become clearer. You learn what produces mosquitoes in your specific conditions.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <h4 class="text-md" style="color: var(--green); font-weight: 600;">Act</h4>
+            <p class="text-sm mt-1">Better understanding leads to better action. Earlier intervention. More targeted response. Each season builds on the last.</p>
+          </div>
+        </div>
+        
+      </div>
+      
+      <!-- Result Card -->
+      <div class="reveal-right">
+        <div class="card" style="padding: 1.5rem; border: 1px solid var(--primary); background: linear-gradient(135deg, var(--primary-soft), transparent);">
+          <h3 class="text-md" style="color: var(--primary); font-weight: 600;">The Result</h3>
+          <p class="text-md mt-2" style="color: var(--text);">
+            Sustained mosquito reduction through better understanding and coordination.
+          </p>
+          <div class="divider mt-3 mb-3" style="background: var(--primary);"></div>
+          <p class="text-sm">
+            Not temporary relief. Lasting improvement. This year's work makes next year more effective.
+          </p>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════════════
+     WHAT IT ENABLES
+     ══════════════════════════════════════════════════════════════════════════════ -->
+
+<section class="section-sm bg-dark" style="padding: 60px 0;">
+  <div class="container" style="max-width: 1000px;">
+    
+    <div class="text-center mb-4">
+      <span class="badge badge-cyan reveal">Capabilities</span>
+      <h2 class="h-md mt-2 reveal-up">What Nidus Enables</h2>
+    </div>
+    
+    <div class="grid grid-2" style="gap: 1rem;">
+      
+      <div class="card reveal-up stagger-1" style="padding: 1.25rem; border-left: 3px solid var(--primary);">
+        <h4 class="text-md" style="color: var(--text); font-weight: 600;">Clearer Identification</h4>
+        <p class="text-sm mt-1">Recognize mosquito-producing conditions earlier and more reliably. See problems before they grow.</p>
+      </div>
+      
+      <div class="card reveal-up stagger-2" style="padding: 1.25rem; border-left: 3px solid var(--cyan);">
+        <h4 class="text-md" style="color: var(--text); font-weight: 600;">Earlier Intervention</h4>
+        <p class="text-sm mt-1">More targeted action when and where it matters most. Act before populations explode.</p>
+      </div>
+      
+      <div class="card reveal-up stagger-3" style="padding: 1.25rem; border-left: 3px solid var(--purple);">
+        <h4 class="text-md" style="color: var(--text); font-weight: 600;">Real Coordination</h4>
+        <p class="text-sm mt-1">Across technicians, supervisors, and seasons. Everyone working from shared understanding.</p>
+      </div>
+      
+      <div class="card reveal-up stagger-4" style="padding: 1.25rem; border-left: 3px solid var(--green);">
+        <h4 class="text-md" style="color: var(--text); font-weight: 600;">Compounding Learning</h4>
+        <p class="text-sm mt-1">Knowledge that accumulates over time. Each observation builds on those before it.</p>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════════════
+     THE DIFFERENCE
+     ══════════════════════════════════════════════════════════════════════════════ -->
+
+<section class="section-sm bg-darker" style="padding: 60px 0;">
+  <div class="container" style="max-width: 900px;">
+    
+    <div class="text-center mb-4">
+      <span class="badge reveal">Comparison</span>
+      <h2 class="h-md mt-2 reveal-up">The Difference</h2>
+    </div>
+    
+    <div class="grid grid-2" style="gap: 1.25rem;">
+      
+      <!-- Without -->
+      <div class="card reveal-left" style="padding: 1.5rem; border-top: 3px solid #ff3b3b;">
+        <h4 class="text-md" style="color: #ff3b3b; font-weight: 600;">Without Nidus</h4>
+        <ul style="list-style: none; padding: 0; margin: 1rem 0 0 0;">
+          <li class="text-sm" style="padding: 0.35rem 0; color: var(--text-muted);">× Observations scattered across notebooks</li>
+          <li class="text-sm" style="padding: 0.35rem 0; color: var(--text-muted);">× Each person works from their own picture</li>
+          <li class="text-sm" style="padding: 0.35rem 0; color: var(--text-muted);">× Lessons learned are easily forgotten</li>
+          <li class="text-sm" style="padding: 0.35rem 0; color: var(--text-muted);">× New staff start from scratch</li>
+          <li class="text-sm" style="padding: 0.35rem 0; color: var(--text-muted);">× Same problems repeat year after year</li>
+        </ul>
+      </div>
+      
+      <!-- With -->
+      <div class="card reveal-right" style="padding: 1.5rem; border-top: 3px solid var(--green);">
+        <h4 class="text-md" style="color: var(--green); font-weight: 600;">With Nidus</h4>
+        <ul style="list-style: none; padding: 0; margin: 1rem 0 0 0;">
+          <li class="text-sm" style="padding: 0.35rem 0; color: var(--text);">✓ Every observation captured and preserved</li>
+          <li class="text-sm" style="padding: 0.35rem 0; color: var(--text);">✓ Everyone works from shared understanding</li>
+          <li class="text-sm" style="padding: 0.35rem 0; color: var(--text);">✓ Knowledge accumulates and compounds</li>
+          <li class="text-sm" style="padding: 0.35rem 0; color: var(--text);">✓ New staff inherit institutional knowledge</li>
+          <li class="text-sm" style="padding: 0.35rem 0; color: var(--text);">✓ Each year builds on the last</li>
+        </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════════════
+     COMMUNITY PARTICIPATION
+     ══════════════════════════════════════════════════════════════════════════════ -->
+
+<section class="section-sm bg-dark" style="padding: 60px 0;">
+  <div class="container" style="max-width: 900px;">
+    
+    <div class="grid grid-2" style="gap: 2rem; align-items: center;">
+      
+      <div class="reveal-left">
+        <span class="badge badge-cyan">Community</span>
+        <h2 class="h-md mt-2" style="color: var(--text);">Community Participation</h2>
+        <p class="text-sm mt-2">
+          Effective mosquito control includes the community. Through <strong style="color: var(--cyan);">report.mosquitoes.online</strong>, residents contribute observations that expand surveillance, strengthen insight, and support coordinated control.
+        </p>
+        <p class="text-sm mt-2">
+          Public input becomes part of the same shared understanding that guides professional action.
+        </p>
+        <a href="https://report.mosquitoes.online" target="_blank" class="btn btn-cyan btn-sm mt-3">Community Portal</a>
+      </div>
+      
+      <div class="reveal-right">
+        <div class="flex flex-col" style="gap: 0.75rem;">
+          <div class="card" style="padding: 1rem; border-left: 3px solid var(--cyan);">
+            <p class="text-sm" style="color: var(--text);"><strong>Expanded surveillance</strong> — residents see what technicians might miss</p>
+          </div>
+          <div class="card" style="padding: 1rem; border-left: 3px solid var(--cyan);">
+            <p class="text-sm" style="color: var(--text);"><strong>Strengthened insight</strong> — more data points, clearer patterns</p>
+          </div>
+          <div class="card" style="padding: 1rem; border-left: 3px solid var(--cyan);">
+            <p class="text-sm" style="color: var(--text);"><strong>Coordinated control</strong> — public and professional observations unified</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════════════
+     WHO IT'S FOR
+     ══════════════════════════════════════════════════════════════════════════════ -->
+
+<section class="section-sm bg-darker" style="padding: 60px 0;">
+  <div class="container" style="max-width: 1000px;">
+    
+    <div class="text-center mb-4">
+      <span class="badge reveal">Users</span>
+      <h2 class="h-md mt-2 reveal-up">Built for Every Role</h2>
+    </div>
+    
+    <div class="grid grid-3" style="gap: 1rem;">
+      
+      <div class="card reveal-up stagger-1" style="padding: 1.25rem; border-top: 3px solid var(--primary);">
+        <h3 class="text-md" style="color: var(--primary); font-weight: 600;">Field Technicians</h3>
+        <p class="text-sm mt-2">
+          Capture observations quickly from the field. See site history before arriving. Know what was found before and what actions were taken.
+        </p>
+      </div>
+      
+      <div class="card reveal-up stagger-2" style="padding: 1.25rem; border-top: 3px solid var(--cyan);">
+        <h3 class="text-md" style="color: var(--cyan); font-weight: 600;">Supervisors</h3>
+        <p class="text-sm mt-2">
+          See operational picture across entire area. Coordinate teams effectively. Make decisions based on shared understanding, not scattered reports.
+        </p>
+      </div>
+      
+      <div class="card reveal-up stagger-3" style="padding: 1.25rem; border-top: 3px solid var(--purple);">
+        <h3 class="text-md" style="color: var(--purple); font-weight: 600;">Program Directors</h3>
+        <p class="text-sm mt-2">
+          Build institutional knowledge that persists beyond individual staff. Demonstrate effectiveness. Your program becomes more capable each year.
+        </p>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════════════
+     KEY TAKEAWAYS
+     ══════════════════════════════════════════════════════════════════════════════ -->
+
+<section class="section-sm bg-dark" style="padding: 60px 0;">
+  <div class="container" style="max-width: 900px;">
+    
+    <div class="text-center mb-4">
+      <span class="badge badge-purple reveal">Summary</span>
+      <h2 class="h-md mt-2 reveal-up">What Matters</h2>
+    </div>
+    
+    <div class="grid grid-2" style="gap: 1rem;">
+      
+      <div class="card reveal-up stagger-1" style="padding: 1.25rem; border-left: 3px solid var(--primary);">
+        <p class="text-sm" style="color: var(--text);"><strong>Observations become permanent.</strong> Nothing lost to notebooks, memory, or staff turnover.</p>
+      </div>
+      
+      <div class="card reveal-up stagger-2" style="padding: 1.25rem; border-left: 3px solid var(--cyan);">
+        <p class="text-sm" style="color: var(--text);"><strong>Understanding becomes shared.</strong> Everyone works from the same operational picture.</p>
+      </div>
+      
+      <div class="card reveal-up stagger-3" style="padding: 1.25rem; border-left: 3px solid var(--purple);">
+        <p class="text-sm" style="color: var(--text);"><strong>Action becomes coordinated.</strong> Across technicians, supervisors, and seasons.</p>
+      </div>
+      
+      <div class="card reveal-up stagger-4" style="padding: 1.25rem; border-left: 3px solid var(--green);">
+        <p class="text-sm" style="color: var(--text);"><strong>Learning becomes cumulative.</strong> Each year builds on knowledge from the last.</p>
+      </div>
+      
+    </div>
+    
+    <div class="text-center mt-4 reveal">
+      <p class="text-md" style="color: var(--text);">
+        The result: <span class="glow-primary">sustained mosquito reduction</span> through better understanding and coordination.
+      </p>
+    </div>
+    
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════════════
+     WHAT TO EXPECT
+     ══════════════════════════════════════════════════════════════════════════════ -->
+
+<section class="section-sm bg-darker" style="padding: 60px 0;">
+  <div class="container" style="max-width: 900px;">
+    
+    <div class="text-center mb-4">
+      <span class="badge reveal">Next Steps</span>
+      <h2 class="h-md mt-2 reveal-up">What Happens When You Reach Out</h2>
+    </div>
+    
+    <div class="grid grid-3" style="gap: 1rem;">
+      
+      <div class="card reveal-up stagger-1" style="padding: 1.25rem; border-top: 3px solid var(--primary);">
+        <h4 class="text-md" style="color: var(--primary); font-weight: 600;">Walkthrough</h4>
+        <p class="text-sm mt-2">
+          Short demonstration of how Nidus works. See the interface, workflow, and outputs in practice.
+        </p>
+      </div>
+      
+      <div class="card reveal-up stagger-2" style="padding: 1.25rem; border-top: 3px solid var(--cyan);">
+        <h4 class="text-md" style="color: var(--cyan); font-weight: 600;">Discussion</h4>
+        <p class="text-sm mt-2">
+          Talk through fit for your program. Timeline. How collaboration would work. Your questions answered.
+        </p>
+      </div>
+      
+      <div class="card reveal-up stagger-3" style="padding: 1.25rem; border-top: 3px solid var(--purple);">
+        <h4 class="text-md" style="color: var(--purple); font-weight: 600;">Decision</h4>
+        <p class="text-sm mt-2">
+          You decide if Nidus is right. No pressure. Just information to make a good choice.
+        </p>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════════════
+     CONTACT
+     ══════════════════════════════════════════════════════════════════════════════ -->
+
+<section id="contact" class="section-sm bg-dark" style="padding: 70px 0;">
+  <div class="container" style="max-width: 500px;">
+    
+    <div class="card reveal-zoom" style="padding: 2rem; text-align: center; border: 1px solid var(--primary); background: linear-gradient(135deg, var(--primary-soft), transparent);">
+      
+      <span class="badge badge-solid">Contact</span>
+      
+      <h2 class="h-md mt-3">
+        <span class="gradient-primary">Get a Demo</span>
+      </h2>
+      
+      <p class="text-sm mt-2">
+        Short walkthrough and discussion. See how Nidus is used and talk through fit, timeline, and collaboration.
+      </p>
+      
+      <div class="divider mt-3 mb-3" style="background: var(--primary);"></div>
+      
+      <a href="mailto:hello@nidus.io" class="btn btn-primary btn-block">
+        hello@nidus.io
+      </a>
+      
+      <p class="text-sm mt-3" style="color: var(--text-muted);">
+        Community reporting portal:
+      </p>
+      <a href="https://report.mosquitoes.online" target="_blank" class="btn btn-outline btn-sm mt-1">
+        report.mosquitoes.online
+      </a>
+      
+    </div>
+    
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════════════
+     MARQUEE
+     ══════════════════════════════════════════════════════════════════════════════ -->
+
 <div class="marquee">
   <div class="marquee-track">
     <div class="marquee-item"><span>NIDUS</span> — Observe</div>
@@ -1995,594 +1278,55 @@ body.theme-orange .btn-outline:hover {
 </div>
 
 
-<!-- ═══════════ THE CORE PROBLEM ═══════════ -->
-<section class="section-sm bg-darker" style="padding: 70px 0;">
-  <div class="container" style="max-width: 1000px;">
-    
-    <div class="grid grid-2" style="gap: 2rem; align-items: center;">
-      
-      <div class="reveal-left">
-        <span class="badge" style="background: rgba(255, 59, 59, 0.15); color: #ff3b3b; border-color: #ff3b3b;">The Problem</span>
-        <h2 class="h-md mt-2" style="color: var(--white);">Mosquito Control Is Hard</h2>
-        <p class="text-md mt-3" style="color: var(--white);">
-          Not because the work is complicated. Because the knowledge is scattered.
-        </p>
-        <p class="text-sm mt-2">
-          Observations live in notebooks. Experience lives in people's heads. When staff leave, knowledge walks out the door. Every season starts closer to zero than it should.
-        </p>
-      </div>
-      
-      <div class="reveal-right">
-        <div class="grid grid-2" style="gap: 1rem;">
-          <div class="card" style="padding: 1.25rem; border-color: rgba(255, 59, 59, 0.3); text-align: center;">
-            <p class="text-sm" style="color: #ff3b3b;">Scattered data</p>
-          </div>
-          <div class="card" style="padding: 1.25rem; border-color: rgba(255, 59, 59, 0.3); text-align: center;">
-            <p class="text-sm" style="color: #ff3b3b;">Lost knowledge</p>
-          </div>
-          <div class="card" style="padding: 1.25rem; border-color: rgba(255, 59, 59, 0.3); text-align: center;">
-            <p class="text-sm" style="color: #ff3b3b;">Reactive response</p>
-          </div>
-          <div class="card" style="padding: 1.25rem; border-color: rgba(255, 59, 59, 0.3); text-align: center;">
-            <p class="text-sm" style="color: #ff3b3b;">Repeated mistakes</p>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-    
+<!-- ══════════════════════════════════════════════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════════════════════════════════════════════ -->
+
+<footer style="padding: 30px 0; background: var(--bg-soft); border-top: 1px solid var(--border);">
+  <div class="container text-center" style="max-width: 600px;">
+    <p class="text-sm" style="color: var(--primary); font-weight: 600;">NIDUS</p>
+    <p class="text-sm mt-1" style="color: var(--text-muted);">Software for reducing mosquito populations</p>
+    <div class="divider mt-3 mb-3" style="max-width: 100px; margin-left: auto; margin-right: auto;"></div>
+    <p class="text-sm" style="color: var(--text-muted);">© 2024 Nidus. All rights reserved.</p>
   </div>
-</section>
+</footer>
 
 
-<!-- ═══════════ WHAT NIDUS IS ═══════════ -->
-<section id="how-it-works" class="section-sm bg-dark" style="padding: 70px 0;">
-  <div class="container" style="max-width: 1000px;">
-    
-    <div class="text-center mb-4">
-      <span class="badge reveal">The Solution</span>
-      <h2 class="h-md mt-2 reveal-up">What Nidus Is</h2>
-    </div>
-    
-    <div class="grid grid-3" style="gap: 1.25rem;">
-      
-      <div class="card card-glow reveal-up stagger-1" style="padding: 1.5rem;">
-        <div class="num-highlight">1</div>
-        <h3 class="text-md" style="color: var(--white); font-weight: 600;">Capture System</h3>
-        <p class="text-sm mt-2">
-          A system for capturing and retaining operational observations. Every observation recorded. Nothing lost.
-        </p>
-      </div>
-      
-      <div class="card card-glow reveal-up stagger-2" style="padding: 1.5rem;">
-        <div class="num-highlight" style="background: var(--cyan);">2</div>
-        <h3 class="text-md" style="color: var(--white); font-weight: 600;">Shared Record</h3>
-        <p class="text-sm mt-2">
-          A shared record that supports coordination across people and time. Everyone sees the same picture.
-        </p>
-      </div>
-      
-      <div class="card card-glow reveal-up stagger-3" style="padding: 1.5rem;">
-        <div class="num-highlight" style="background: var(--purple);">3</div>
-        <h3 class="text-md" style="color: var(--white); font-weight: 600;">Learning Foundation</h3>
-        <p class="text-sm mt-2">
-          A foundation for learning what actions reduce mosquito production. Knowledge that compounds.
-        </p>
-      </div>
-      
-    </div>
-    
-  </div>
-</section>
+<!-- ══════════════════════════════════════════════════════════════════════════════
+     JAVASCRIPT
+     ══════════════════════════════════════════════════════════════════════════════ -->
 
-
-<!-- ═══════════ MARQUEE 2 ═══════════ -->
-<div class="marquee" style="background: var(--black);">
-  <div class="marquee-track">
-    <div class="marquee-item"><span>→</span> Clearer identification</div>
-    <div class="marquee-item"><span>→</span> Earlier intervention</div>
-    <div class="marquee-item"><span>→</span> Targeted action</div>
-    <div class="marquee-item"><span>→</span> Team coordination</div>
-    <div class="marquee-item"><span>→</span> Accumulated learning</div>
-    <div class="marquee-item"><span>→</span> Compounding results</div>
-    <div class="marquee-item"><span>→</span> Clearer identification</div>
-    <div class="marquee-item"><span>→</span> Earlier intervention</div>
-    <div class="marquee-item"><span>→</span> Targeted action</div>
-    <div class="marquee-item"><span>→</span> Team coordination</div>
-    <div class="marquee-item"><span>→</span> Accumulated learning</div>
-    <div class="marquee-item"><span>→</span> Compounding results</div>
-  </div>
-</div>
-
-
-<!-- ═══════════ HOW IT WORKS ═══════════ -->
-<section class="section-sm bg-darker" style="padding: 70px 0;">
-  <div class="container" style="max-width: 900px;">
-    
-    <div class="text-center mb-4">
-      <span class="badge badge-purple reveal">Process</span>
-      <h2 class="h-md mt-2 reveal-up">How It Works</h2>
-    </div>
-    
-    <div class="grid grid-2" style="gap: 2.5rem; align-items: start;">
-      
-      <!-- Timeline -->
-      <div class="timeline reveal-left">
-        
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div>
-            <h4 class="text-md" style="color: var(--white); font-weight: 600;">Capture</h4>
-            <p class="text-sm mt-1">Observations from field and community recorded, timestamped, geolocated.</p>
-          </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div>
-            <h4 class="text-md" style="color: var(--white); font-weight: 600;">Organize</h4>
-            <p class="text-sm mt-1">Information organized into shared operational picture. Real-time updates.</p>
-          </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div>
-            <h4 class="text-md" style="color: var(--white); font-weight: 600;">Understand</h4>
-            <p class="text-sm mt-1">Patterns emerge. Causes become clearer. You learn what produces mosquitoes here.</p>
-          </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div>
-            <h4 class="text-md" style="color: var(--white); font-weight: 600;">Act</h4>
-            <p class="text-sm mt-1">Better understanding → better action. Each season builds on the last.</p>
-          </div>
-        </div>
-        
-      </div>
-      
-      <!-- Result -->
-      <div class="reveal-right">
-        <div class="card card-feature" style="padding: 2rem;">
-          <h3 class="h-sm gradient-green">The Result</h3>
-          <p class="text-md mt-2" style="color: var(--white);">
-            Sustained mosquito reduction.
-          </p>
-          <p class="text-sm mt-2">
-            Not temporary relief. Lasting improvement built on accumulated knowledge and coordinated effort.
-          </p>
-          <div class="divider-glow mt-3 mb-3"></div>
-          <p class="text-sm" style="color: var(--green);">
-            This year's work makes next year more effective.
-          </p>
-        </div>
-      </div>
-      
-    </div>
-    
-  </div>
-</section>
-
-
-<!-- ═══════════ THE DIFFERENCE ═══════════ -->
-<section class="section-sm bg-dark" style="padding: 70px 0;">
-  <div class="container" style="max-width: 900px;">
-    
-    <div class="text-center mb-4">
-      <span class="badge reveal">Comparison</span>
-      <h2 class="h-md mt-2 reveal-up">The Difference</h2>
-    </div>
-    
-    <div class="grid grid-2" style="gap: 1.5rem;">
-      
-      <!-- Without -->
-      <div class="card reveal-left" style="padding: 1.5rem; border-color: rgba(255, 59, 59, 0.3);">
-        <h4 class="text-md" style="color: #ff3b3b; font-weight: 600;">Without Nidus</h4>
-        <div class="divider mt-2 mb-2" style="background: rgba(255, 59, 59, 0.3);"></div>
-        <ul style="list-style: none; padding: 0; margin: 0;">
-          <li class="text-sm" style="padding: 0.4rem 0; color: var(--gray);">× Observations scattered</li>
-          <li class="text-sm" style="padding: 0.4rem 0; color: var(--gray);">× Each person works alone</li>
-          <li class="text-sm" style="padding: 0.4rem 0; color: var(--gray);">× Lessons forgotten</li>
-          <li class="text-sm" style="padding: 0.4rem 0; color: var(--gray);">× New staff start from scratch</li>
-          <li class="text-sm" style="padding: 0.4rem 0; color: var(--gray);">× Same problems repeat</li>
-        </ul>
-      </div>
-      
-      <!-- With -->
-      <div class="card reveal-right" style="padding: 1.5rem; border-color: var(--green);">
-        <h4 class="text-md" style="color: var(--green); font-weight: 600;">With Nidus</h4>
-        <div class="divider mt-2 mb-2" style="background: var(--green);"></div>
-        <ul style="list-style: none; padding: 0; margin: 0;">
-          <li class="text-sm" style="padding: 0.4rem 0; color: var(--white);">✓ Every observation captured</li>
-          <li class="text-sm" style="padding: 0.4rem 0; color: var(--white);">✓ Shared understanding</li>
-          <li class="text-sm" style="padding: 0.4rem 0; color: var(--white);">✓ Knowledge accumulates</li>
-          <li class="text-sm" style="padding: 0.4rem 0; color: var(--white);">✓ New staff inherit knowledge</li>
-          <li class="text-sm" style="padding: 0.4rem 0; color: var(--white);">✓ Each year builds on last</li>
-        </ul>
-      </div>
-      
-    </div>
-    
-  </div>
-</section>
-
-
-<!-- ═══════════ WHAT IT ENABLES ═══════════ -->
-<section class="section-sm bg-darker" style="padding: 70px 0;">
-  <div class="container" style="max-width: 1000px;">
-    
-    <div class="text-center mb-4">
-      <span class="badge badge-cyan reveal">Capabilities</span>
-      <h2 class="h-md mt-2 reveal-up">What Nidus Enables</h2>
-    </div>
-    
-    <div class="grid grid-4" style="gap: 1rem;">
-      
-      <div class="card reveal-up stagger-1" style="padding: 1.25rem; text-align: center; border-top: 2px solid var(--green);">
-        <h4 class="text-md" style="color: var(--white); font-weight: 600;">Clearer Identification</h4>
-        <p class="text-sm mt-2">Recognize mosquito-producing conditions earlier</p>
-      </div>
-      
-      <div class="card reveal-up stagger-2" style="padding: 1.25rem; text-align: center; border-top: 2px solid var(--cyan);">
-        <h4 class="text-md" style="color: var(--white); font-weight: 600;">Earlier Intervention</h4>
-        <p class="text-sm mt-2">Act before problems grow large</p>
-      </div>
-      
-      <div class="card reveal-up stagger-3" style="padding: 1.25rem; text-align: center; border-top: 2px solid var(--purple);">
-        <h4 class="text-md" style="color: var(--white); font-weight: 600;">Real Coordination</h4>
-        <p class="text-sm mt-2">Across technicians, supervisors, seasons</p>
-      </div>
-      
-      <div class="card reveal-up stagger-4" style="padding: 1.25rem; text-align: center; border-top: 2px solid var(--orange);">
-        <h4 class="text-md" style="color: var(--white); font-weight: 600;">Compounding Learning</h4>
-        <p class="text-sm mt-2">Knowledge grows over time</p>
-      </div>
-      
-    </div>
-    
-  </div>
-</section>
-
-
-<!-- ═══════════ COMMUNITY ═══════════ -->
-<section class="section-sm bg-dark" style="padding: 70px 0;">
-  <div class="container" style="max-width: 900px;">
-    
-    <div class="grid grid-2" style="gap: 2.5rem; align-items: center;">
-      
-      <div class="reveal-left">
-        <span class="badge badge-cyan">Community</span>
-        <h2 class="h-md mt-2" style="color: var(--white);">Community Participation</h2>
-        <p class="text-md mt-3" style="color: var(--white);">
-          Effective mosquito control includes the community.
-        </p>
-        <p class="text-sm mt-2">
-          Through <strong class="glow-cyan">report.mosquitoes.online</strong>, residents contribute observations that expand surveillance, strengthen insight, and support coordinated control.
-        </p>
-        <p class="text-sm mt-2">
-          Public input becomes part of the same shared understanding that guides professional action.
-        </p>
-        <a href="https://report.mosquitoes.online" target="_blank" class="btn btn-cyan btn-sm mt-3">Community Reporting Portal</a>
-      </div>
-      
-      <div class="reveal-right">
-        <div class="card" style="padding: 1.5rem; border-color: var(--cyan); text-align: center;">
-          <p class="text-lg" style="color: var(--white);">More observers.</p>
-          <p class="text-lg" style="color: var(--cyan);">Better coverage.</p>
-          <p class="text-lg" style="color: var(--white);">Stronger insight.</p>
-          <div class="divider-glow mt-3 mb-3"></div>
-          <p class="text-sm">
-            Residents see things technicians might miss. Community reports multiply surveillance capacity.
-          </p>
-        </div>
-      </div>
-      
-    </div>
-    
-  </div>
-</section>
-
-
-<!-- ═══════════ MARQUEE 3 ═══════════ -->
-<div class="marquee" style="background: var(--black-soft);">
-  <div class="marquee-track">
-    <div class="marquee-item"><span>NIDUS</span> — Field Technicians</div>
-    <div class="marquee-item"><span>NIDUS</span> — Supervisors</div>
-    <div class="marquee-item"><span>NIDUS</span> — Program Directors</div>
-    <div class="marquee-item"><span>NIDUS</span> — Community Members</div>
-    <div class="marquee-item"><span>NIDUS</span> — Field Technicians</div>
-    <div class="marquee-item"><span>NIDUS</span> — Supervisors</div>
-    <div class="marquee-item"><span>NIDUS</span> — Program Directors</div>
-    <div class="marquee-item"><span>NIDUS</span> — Community Members</div>
-  </div>
-</div>
-
-
-<!-- ═══════════ WHO IT'S FOR ═══════════ -->
-<section class="section-sm bg-darker" style="padding: 70px 0;">
-  <div class="container" style="max-width: 1000px;">
-    
-    <div class="text-center mb-4">
-      <span class="badge reveal">Users</span>
-      <h2 class="h-md mt-2 reveal-up">Built for Every Role</h2>
-    </div>
-    
-    <div class="grid grid-3" style="gap: 1.25rem;">
-      
-      <div class="card card-glow reveal-up stagger-1" style="padding: 1.5rem;">
-        <h3 class="text-md" style="color: var(--green); font-weight: 600;">Field Technicians</h3>
-        <p class="text-sm mt-2">
-          Capture observations quickly. See site history before arriving. Know what was found before and what actions were taken. Your observations become permanent record.
-        </p>
-      </div>
-      
-      <div class="card card-glow reveal-up stagger-2" style="padding: 1.5rem;">
-        <h3 class="text-md" style="color: var(--cyan); font-weight: 600;">Supervisors</h3>
-        <p class="text-sm mt-2">
-          See operational picture across entire area. Coordinate teams effectively. Identify where attention is needed. Decisions based on shared understanding.
-        </p>
-      </div>
-      
-      <div class="card card-glow reveal-up stagger-3" style="padding: 1.5rem;">
-        <h3 class="text-md" style="color: var(--purple); font-weight: 600;">Program Directors</h3>
-        <p class="text-sm mt-2">
-          Build institutional knowledge that persists beyond individual staff. Demonstrate program effectiveness. Make the case for resources.
-        </p>
-      </div>
-      
-    </div>
-    
-  </div>
-</section>
-
-
-<!-- ═══════════ SIMPLE APPROACH ═══════════ -->
-<section class="section-sm bg-dark" style="padding: 70px 0;">
-  <div class="container" style="max-width: 700px;">
-    
-    <div class="card card-glass reveal-up" style="padding: 2rem; text-align: center;">
-      <h2 class="h-sm" style="color: var(--white);">Simple and Focused</h2>
-      <div class="divider-glow mt-3 mb-3" style="max-width: 100px; margin-left: auto; margin-right: auto;"></div>
-      <p class="text-md">
-        Nidus does one thing well: turn observations into shared understanding and coordinated action.
-      </p>
-      <p class="text-sm mt-2">
-        Clean interface. Straightforward workflow. Short learning curve.
-      </p>
-      <p class="text-sm mt-2" style="color: var(--green);">
-        The goal isn't to use software — it's to reduce mosquito populations.
-      </p>
-    </div>
-    
-  </div>
-</section>
-
-
-<!-- ═══════════ MARQUEE 4 ═══════════ -->
-<div class="marquee" style="background: var(--black);">
-  <div class="marquee-track">
-    <div class="marquee-item"><span>NIDUS</span> — Capture</div>
-    <div class="marquee-item"><span>NIDUS</span> — Retain</div>
-    <div class="marquee-item"><span>NIDUS</span> — Share</div>
-    <div class="marquee-item"><span>NIDUS</span> — Coordinate</div>
-    <div class="marquee-item"><span>NIDUS</span> — Learn</div>
-    <div class="marquee-item"><span>NIDUS</span> — Improve</div>
-    <div class="marquee-item"><span>NIDUS</span> — Capture</div>
-    <div class="marquee-item"><span>NIDUS</span> — Retain</div>
-    <div class="marquee-item"><span>NIDUS</span> — Share</div>
-    <div class="marquee-item"><span>NIDUS</span> — Coordinate</div>
-    <div class="marquee-item"><span>NIDUS</span> — Learn</div>
-    <div class="marquee-item"><span>NIDUS</span> — Improve</div>
-  </div>
-</div>
-
-
-<!-- ═══════════ KEY POINTS ═══════════ -->
-<section class="section-sm bg-darker" style="padding: 70px 0;">
-  <div class="container" style="max-width: 900px;">
-    
-    <div class="text-center mb-4">
-      <span class="badge badge-purple reveal">Summary</span>
-      <h2 class="h-md mt-2 reveal-up">What Matters</h2>
-    </div>
-    
-    <div class="grid grid-2" style="gap: 1.25rem;">
-      
-      <div class="card reveal-up stagger-1" style="padding: 1.25rem; border-left: 3px solid var(--green);">
-        <p class="text-md" style="color: var(--white);">
-          <strong>Observations become permanent.</strong>
-        </p>
-        <p class="text-sm mt-1">Nothing lost to notebooks, memory, or staff turnover.</p>
-      </div>
-      
-      <div class="card reveal-up stagger-2" style="padding: 1.25rem; border-left: 3px solid var(--cyan);">
-        <p class="text-md" style="color: var(--white);">
-          <strong>Understanding becomes shared.</strong>
-        </p>
-        <p class="text-sm mt-1">Everyone works from the same operational picture.</p>
-      </div>
-      
-      <div class="card reveal-up stagger-3" style="padding: 1.25rem; border-left: 3px solid var(--purple);">
-        <p class="text-md" style="color: var(--white);">
-          <strong>Action becomes coordinated.</strong>
-        </p>
-        <p class="text-sm mt-1">Across technicians, supervisors, and seasons.</p>
-      </div>
-      
-      <div class="card reveal-up stagger-4" style="padding: 1.25rem; border-left: 3px solid var(--orange);">
-        <p class="text-md" style="color: var(--white);">
-          <strong>Learning becomes cumulative.</strong>
-        </p>
-        <p class="text-sm mt-1">Each year builds on knowledge from the last.</p>
-      </div>
-      
-    </div>
-    
-    <div class="text-center mt-5 reveal">
-      <p class="text-lg" style="color: var(--white);">
-        The result: <span class="glow-green">sustained mosquito reduction</span> through better understanding and coordination.
-      </p>
-    </div>
-    
-  </div>
-</section>
-
-
-<!-- ═══════════ WHAT TO EXPECT ═══════════ -->
-<section class="section-sm bg-darker" style="padding: 70px 0;">
-  <div class="container" style="max-width: 900px;">
-    
-    <div class="text-center mb-4">
-      <span class="badge reveal">Next Steps</span>
-      <h2 class="h-md mt-2 reveal-up">What Happens When You Reach Out</h2>
-    </div>
-    
-    <div class="grid grid-3" style="gap: 1.25rem;">
-      
-      <div class="card reveal-up stagger-1" style="padding: 1.5rem; text-align: center;">
-        <div class="num-highlight mx-auto">1</div>
-        <h4 class="text-md" style="color: var(--white); font-weight: 600;">Walkthrough</h4>
-        <p class="text-sm mt-2">
-          A short demonstration of how Nidus works in practice. See the interface, the workflow, and the outputs.
-        </p>
-      </div>
-      
-      <div class="card reveal-up stagger-2" style="padding: 1.5rem; text-align: center;">
-        <div class="num-highlight mx-auto" style="background: var(--cyan);">2</div>
-        <h4 class="text-md" style="color: var(--white); font-weight: 600;">Discussion</h4>
-        <p class="text-sm mt-2">
-          Talk through fit for your program. Timeline. How collaboration would work. Your questions answered directly.
-        </p>
-      </div>
-      
-      <div class="card reveal-up stagger-3" style="padding: 1.5rem; text-align: center;">
-        <div class="num-highlight mx-auto" style="background: var(--purple);">3</div>
-        <h4 class="text-md" style="color: var(--white); font-weight: 600;">Decision</h4>
-        <p class="text-sm mt-2">
-          You decide if Nidus is right for you. No pressure, no obligation. Just information to make a good choice.
-        </p>
-      </div>
-      
-    </div>
-    
-
-<!-- ═══════════ CONTACT ═══════════ -->
-<!-- Your existing contact section goes here -->
-
-<!-- ═══════════ CONTACT ═══════════ -->
-<section id="contact" class="section-sm bg-dark" style="padding: 80px 0;">
-  <div class="container" style="max-width: 550px;">
-    
-    <div class="card card-feature reveal-zoom" style="padding: 2.5rem; text-align: center;">
-      
-      <span class="badge badge-solid">Contact</span>
-      
-      <h2 class="h-md mt-3">
-        <span class="gradient-green">Get a Demo</span>
-      </h2>
-      
-      <p class="text-md mt-3">
-        See how Nidus works. Short walkthrough, no pressure.
-      </p>
-      
-      <div class="divider-glow mt-4 mb-4"></div>
-      
-      <a href="mailto:hello@nidus.io" class="btn btn-green btn-lg btn-block">
-        hello@nidus.io
-      </a>
-      
-      <p class="text-sm mt-4" style="color: var(--gray);">
-        Or visit the community reporting portal:
-      </p>
-      <a href="https://report.mosquitoes.online" target="_blank" class="btn btn-outline btn-sm mt-2">
-        report.mosquitoes.online
-      </a>
-      
-    </div>
-    
-  </div>
-</section>
-
-
-<!-- ═══════════ FINAL MARQUEE ═══════════ -->
-<div class="marquee" style="background: var(--black-soft);">
-  <div class="marquee-track">
-    <div class="marquee-item"><span>NIDUS</span> — Observations → Understanding</div>
-    <div class="marquee-item"><span>NIDUS</span> — Understanding → Action</div>
-    <div class="marquee-item"><span>NIDUS</span> — Action → Results</div>
-    <div class="marquee-item"><span>NIDUS</span> — Results → Knowledge</div>
-    <div class="marquee-item"><span>NIDUS</span> — Knowledge → Better Action</div>
-    <div class="marquee-item"><span>NIDUS</span> — Observations → Understanding</div>
-    <div class="marquee-item"><span>NIDUS</span> — Understanding → Action</div>
-    <div class="marquee-item"><span>NIDUS</span> — Action → Results</div>
-    <div class="marquee-item"><span>NIDUS</span> — Results → Knowledge</div>
-  <!-- ══════════════════════════════════════════════════════════════════════════
-       JAVASCRIPT - Scroll Reveal
-       Place this right before </body>
-       ══════════════════════════════════════════════════════════════════════════ -->
-  <script>
-    // Scroll Reveal Animation
-    function reveal() {
-      const elements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-      
-      elements.forEach(el => {
-        const windowHeight = window.innerHeight;
-        const elementTop = el.getBoundingClientRect().top;
-        const revealPoint = 150;
-        
-        if (elementTop < windowHeight - revealPoint) {
-          el.classList.add('active');
-        }
-      });
-    }
-    
-    window.addEventListener('scroll', reveal);
-    window.addEventListener('load', reveal);
-  // Theme Toggle
+<script>
+  // ═══════════════════════════════════════════════════════════════════════════
+  // THEME TOGGLE (Light/Dark Mode)
+  // ═══════════════════════════════════════════════════════════════════════════
+  
   const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
   const themeText = document.getElementById('themeText');
   const body = document.body;
 
   themeToggle.addEventListener('click', () => {
-    body.classList.toggle('theme-orange');
+    body.classList.toggle('light-mode');
     
-    if (body.classList.contains('theme-orange')) {
+    if (body.classList.contains('light-mode')) {
       themeText.textContent = 'Dark Mode';
     } else {
       themeText.textContent = 'Light Mode';
     }
   });
-  </script>
-
-  <script>
-  // ══════════════════════════════════════════════════════════════════════════
-  // SCROLL PROGRESS BAR
-  // ══════════════════════════════════════════════════════════════════════════
-  
-  const scrollProgress = document.createElement('div');
-  scrollProgress.className = 'scroll-progress';
-  document.body.prepend(scrollProgress);
-  
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = (scrollTop / docHeight) * 100;
-    scrollProgress.style.width = scrollPercent + '%';
-  });
 
 
-  // ══════════════════════════════════════════════════════════════════════════
-  // REVEAL ON SCROLL
-  // ══════════════════════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════════════════════
+  // SCROLL REVEAL
+  // ═══════════════════════════════════════════════════════════════════════════
   
   function reveal() {
-    const reveals = document.querySelectorAll(
-      '.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-up, .reveal-down, .reveal-zoom, .reveal-rotate'
+    const elements = document.querySelectorAll(
+      '.reveal, .reveal-left, .reveal-right, .reveal-up, .reveal-zoom'
     );
     
-    reveals.forEach(el => {
+    elements.forEach(el => {
       const windowHeight = window.innerHeight;
       const elementTop = el.getBoundingClientRect().top;
       const revealPoint = 120;
@@ -2597,141 +1341,9 @@ body.theme-orange .btn-outline:hover {
   window.addEventListener('load', reveal);
 
 
-  // ══════════════════════════════════════════════════════════════════════════
-  // COUNTER ANIMATION
-  // ══════════════════════════════════════════════════════════════════════════
-  
-  function animateCounters() {
-    const counters = document.querySelectorAll('.counter');
-    
-    counters.forEach(counter => {
-      const target = parseInt(counter.getAttribute('data-target'));
-      const duration = 2000;
-      const increment = target / (duration / 16);
-      let current = 0;
-      
-      const elementTop = counter.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
-      
-      if (elementTop < windowHeight - 100 && !counter.classList.contains('counted')) {
-        counter.classList.add('counted');
-        
-        const updateCounter = () => {
-          current += increment;
-          if (current < target) {
-            counter.textContent = Math.floor(current).toLocaleString();
-            requestAnimationFrame(updateCounter);
-          } else {
-            counter.textContent = target.toLocaleString();
-          }
-        };
-        
-        updateCounter();
-      }
-    });
-  }
-  
-  window.addEventListener('scroll', animateCounters);
-  window.addEventListener('load', animateCounters);
-
-
-  // ══════════════════════════════════════════════════════════════════════════
-  // PROGRESS BAR ANIMATION
-  // ══════════════════════════════════════════════════════════════════════════
-  
-  function animateProgressBars() {
-    const progressBars = document.querySelectorAll('.progress-fill');
-    
-    progressBars.forEach(bar => {
-      const elementTop = bar.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
-      
-      if (elementTop < windowHeight - 100) {
-        bar.classList.add('active');
-      }
-    });
-  }
-  
-  window.addEventListener('scroll', animateProgressBars);
-  window.addEventListener('load', animateProgressBars);
-
-
-  // ══════════════════════════════════════════════════════════════════════════
-  // SPLIT TEXT ANIMATION
-  // ══════════════════════════════════════════════════════════════════════════
-  
-  document.querySelectorAll('.split-text').forEach(el => {
-    const text = el.textContent;
-    el.innerHTML = '';
-    
-    text.split('').forEach((char, i) => {
-      const span = document.createElement('span');
-      span.className = 'char';
-      span.style.transitionDelay = `${i * 0.03}s`;
-      span.textContent = char === ' ' ? '\u00A0' : char;
-      el.appendChild(span);
-    });
-  });
-  
-  function animateSplitText() {
-    document.querySelectorAll('.split-text').forEach(el => {
-      const elementTop = el.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
-      
-      if (elementTop < windowHeight - 100) {
-        el.classList.add('active');
-      }
-    });
-  }
-  
-  window.addEventListener('scroll', animateSplitText);
-  window.addEventListener('load', animateSplitText);
-
-
-  // ══════════════════════════════════════════════════════════════════════════
-  // PARALLAX EFFECT
-  // ══════════════════════════════════════════════════════════════════════════
-  
-  window.addEventListener('scroll', () => {
-    const parallaxElements = document.querySelectorAll('.parallax-slow');
-    const scrollY = window.scrollY;
-    
-    parallaxElements.forEach(el => {
-      const speed = 0.3;
-      const rect = el.getBoundingClientRect();
-      const offset = (rect.top + scrollY) * speed;
-      el.style.transform = `translateY(${scrollY * speed - offset}px)`;
-    });
-  });
-
-
-  // ══════════════════════════════════════════════════════════════════════════
-  // HORIZONTAL SCROLL ON MOUSE MOVE
-  // ══════════════════════════════════════════════════════════════════════════
-  
-  document.querySelectorAll('.horizontal-section').forEach(section => {
-    const track = section.querySelector('.horizontal-track');
-    if (!track) return;
-    
-    section.addEventListener('mousemove', (e) => {
-      const rect = section.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const percentage = x / rect.width;
-      const maxScroll = track.scrollWidth - section.offsetWidth;
-      const scrollAmount = maxScroll * percentage;
-      
-      track.style.transform = `translateX(-${scrollAmount}px)`;
-    });
-    
-    section.addEventListener('mouseleave', () => {
-      track.style.transform = 'translateX(0)';
-    });
-  });
-
-
-  // ══════════════════════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════════════════════
   // SMOOTH SCROLL FOR ANCHOR LINKS
-  // ══════════════════════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════════════════════
   
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
