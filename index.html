@@ -21,19 +21,19 @@
 
 :root {
   /* Primary Brand Colors - ORANGE */
-  --primary:          #ff6b2d;
-  --primary-light:    #ff8c5a;
-  --primary-glow:     rgba(255, 107, 45, 0.6);
+  --primary:          #f76436;
+  --primary-light:    #f87e57;
+  --primary-glow:     rgba(251, 178, 155, 0.6);
   --primary-soft:     rgba(255, 107, 45, 0.15);
 
   /* Accent Colors */
-  --cyan:             #00d4ff;
-  --cyan-glow:        rgba(0, 212, 255, 0.6);
-  --purple:           #b14eff;
-  --purple-glow:      rgba(177, 78, 255, 0.6);
-  --green:            #76b900;
-  --green-glow:       rgba(118, 185, 0, 0.6);
-  --red:              #ff3b3b;
+  --color1:             #ffc01b;
+  --color1-glow:        rgba(255, 224, 141, 0.6);
+  --color2:           #3c552d;
+  --color2-glow:      rgba(125, 142, 115, 0.6);
+  --color3:            #8bae67;
+  --color3-glow:       rgba(178, 201, 154, 0.6);
+  --color4:              #d7b26d;
 
   /* Background Colors - DARK MODE DEFAULT */
   --bg:               #000000;
@@ -219,14 +219,14 @@ p, h1, h2, h3, h4, h5, h6 {
   text-shadow: 0 0 20px var(--primary-glow), 0 0 40px var(--primary-glow);
 }
 
-.glow-cyan {
-  color: var(--cyan);
-  text-shadow: 0 0 20px var(--cyan-glow), 0 0 40px var(--cyan-glow);
+.glow-color1 {
+  color: var(--color1);
+  text-shadow: 0 0 20px var(--color1-glow), 0 0 40px var(--color1-glow);
 }
 
-.glow-purple {
-  color: var(--purple);
-  text-shadow: 0 0 20px var(--purple-glow), 0 0 40px var(--purple-glow);
+.glow-color2 {
+  color: var(--color2);
+  text-shadow: 0 0 20px var(--color2-glow), 0 0 40px var(--color2-glow);
 }
 
 /* Gradient Text */
@@ -238,7 +238,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .gradient-cyber {
-  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  background: linear-gradient(135deg, var(--color1), var(--color2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -293,14 +293,14 @@ p, h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 20px var(--primary-glow);
 }
 
-.btn-cyan {
-  background: var(--cyan);
+.btn-color1 {
+  background: var(--color1);
   color: #000000;
-  border-color: var(--cyan);
+  border-color: var(--color1);
 }
 
-.btn-cyan:hover {
-  box-shadow: 0 0 30px var(--cyan-glow);
+.btn-color1:hover {
+  box-shadow: 0 0 30px var(--color1-glow);
   transform: translateY(-2px);
 }
 
@@ -377,16 +377,16 @@ p, h1, h2, h3, h4, h5, h6 {
   border: 1px solid var(--primary);
 }
 
-.badge-cyan {
+.badge-color1 {
   background: rgba(0, 212, 255, 0.15);
-  color: var(--cyan);
-  border-color: var(--cyan);
+  color: var(--color1);
+  border-color: var(--color1);
 }
 
-.badge-purple {
+.badge-color2 {
   background: rgba(177, 78, 255, 0.15);
-  color: var(--purple);
-  border-color: var(--purple);
+  color: var(--color2);
+  border-color: var(--color2);
 }
 
 .badge-solid {
@@ -551,7 +551,7 @@ p, h1, h2, h3, h4, h5, h6 {
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(180deg, var(--primary), var(--cyan), var(--purple), var(--green));
+  background: linear-gradient(180deg, var(--primary), var(--color1), var(--color2), var(--color3));
 }
 
 .timeline-item {
@@ -575,18 +575,18 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .timeline-item:nth-child(2) .timeline-dot { 
-  background: var(--cyan); 
-  box-shadow: 0 0 15px var(--cyan-glow); 
+  background: var(--color1); 
+  box-shadow: 0 0 15px var(--color1-glow); 
 }
 
 .timeline-item:nth-child(3) .timeline-dot { 
-  background: var(--purple); 
-  box-shadow: 0 0 15px var(--purple-glow); 
+  background: var(--color2); 
+  box-shadow: 0 0 15px var(--color2-glow); 
 }
 
 .timeline-item:nth-child(4) .timeline-dot { 
-  background: var(--green); 
-  box-shadow: 0 0 15px var(--green-glow); 
+  background: var(--color3); 
+  box-shadow: 0 0 15px var(--color3-glow); 
 }
 
 
@@ -794,11 +794,11 @@ p, h1, h2, h3, h4, h5, h6 {
     </h1>
     
     <p class="h-sm mt-2 reveal delay-2" style="color: var(--text); font-weight: 400;">
-      Software for reducing mosquito populations
+      Software for color4ucing mosquito populations
     </p>
     
     <p class="text-md mt-3 reveal delay-3" style="max-width: 600px; margin: 0 auto;">
-      Mosquito control is hard — not because the work is complicated, but because knowledge is scattered. Observations live in notebooks. Experience lives in people's heads. When staff leave, knowledge walks out the door.
+      Mosquito control is hard — not because the work is complicated, but because knowledge is scattecolor4. Observations live in notebooks. Experience lives in people's heads. When staff leave, knowledge walks out the door.
     </p>
     
     <p class="text-md mt-2 reveal delay-3" style="max-width: 600px; margin: 0 auto; color: var(--primary);">
@@ -832,7 +832,7 @@ p, h1, h2, h3, h4, h5, h6 {
       <span class="badge reveal">The Platform</span>
       <h2 class="h-md mt-2 reveal-up">What Is Nidus</h2>
       <p class="text-md mt-2 reveal-up" style="max-width: 550px; margin: 0 auto;">
-        A system that turns observations into shared understanding and coordinated action
+        A system that turns observations into shacolor4 understanding and coordinated action
       </p>
     </div>
     
@@ -846,15 +846,15 @@ p, h1, h2, h3, h4, h5, h6 {
         </p>
       </div>
       
-      <div class="card reveal-up stagger-2" style="padding: 1.5rem; border-top: 3px solid var(--cyan);">
-        <h3 class="text-md" style="color: var(--cyan); font-weight: 600;">Shared Record</h3>
+      <div class="card reveal-up stagger-2" style="padding: 1.5rem; border-top: 3px solid var(--color1);">
+        <h3 class="text-md" style="color: var(--color1); font-weight: 600;">Shacolor4 Record</h3>
         <p class="text-sm mt-2">
           Everyone works from the same operational picture. New staff inherit existing knowledge instantly.
         </p>
       </div>
       
-      <div class="card reveal-up stagger-3" style="padding: 1.5rem; border-top: 3px solid var(--purple);">
-        <h3 class="text-md" style="color: var(--purple); font-weight: 600;">Learning Foundation</h3>
+      <div class="card reveal-up stagger-3" style="padding: 1.5rem; border-top: 3px solid var(--color2);">
+        <h3 class="text-md" style="color: var(--color2); font-weight: 600;">Learning Foundation</h3>
         <p class="text-sm mt-2">
           Patterns emerge over time. You learn what produces mosquitoes and what actions work in your conditions.
         </p>
@@ -869,7 +869,7 @@ p, h1, h2, h3, h4, h5, h6 {
       <div class="card reveal-left" style="padding: 1.5rem; border-left: 3px solid #ff3b3b;">
         <h4 class="text-md" style="color: #ff3b3b; font-weight: 600;">Without Nidus</h4>
         <ul style="list-style: none; padding: 0; margin: 1rem 0 0 0;">
-          <li class="text-sm" style="padding: 0.3rem 0; color: var(--text-muted);">× Observations scattered across notebooks</li>
+          <li class="text-sm" style="padding: 0.3rem 0; color: var(--text-muted);">× Observations scattecolor4 across notebooks</li>
           <li class="text-sm" style="padding: 0.3rem 0; color: var(--text-muted);">× Each person works from their own picture</li>
           <li class="text-sm" style="padding: 0.3rem 0; color: var(--text-muted);">× Lessons learned are easily forgotten</li>
           <li class="text-sm" style="padding: 0.3rem 0; color: var(--text-muted);">× New staff start from scratch</li>
@@ -877,11 +877,11 @@ p, h1, h2, h3, h4, h5, h6 {
         </ul>
       </div>
       
-      <div class="card reveal-right" style="padding: 1.5rem; border-left: 3px solid var(--green);">
-        <h4 class="text-md" style="color: var(--green); font-weight: 600;">With Nidus</h4>
+      <div class="card reveal-right" style="padding: 1.5rem; border-left: 3px solid var(--color3);">
+        <h4 class="text-md" style="color: var(--color3); font-weight: 600;">With Nidus</h4>
         <ul style="list-style: none; padding: 0; margin: 1rem 0 0 0;">
-          <li class="text-sm" style="padding: 0.3rem 0; color: var(--text);">✓ Every observation captured and preserved</li>
-          <li class="text-sm" style="padding: 0.3rem 0; color: var(--text);">✓ Everyone works from shared understanding</li>
+          <li class="text-sm" style="padding: 0.3rem 0; color: var(--text);">✓ Every observation captucolor4 and preserved</li>
+          <li class="text-sm" style="padding: 0.3rem 0; color: var(--text);">✓ Everyone works from shacolor4 understanding</li>
           <li class="text-sm" style="padding: 0.3rem 0; color: var(--text);">✓ Knowledge accumulates and compounds</li>
           <li class="text-sm" style="padding: 0.3rem 0; color: var(--text);">✓ New staff inherit institutional knowledge</li>
           <li class="text-sm" style="padding: 0.3rem 0; color: var(--text);">✓ Each year builds on the last</li>
@@ -902,17 +902,17 @@ p, h1, h2, h3, h4, h5, h6 {
           <p class="text-sm mt-1" style="font-size: 0.8rem;">See problems before they grow</p>
         </div>
         
-        <div class="card reveal-up stagger-2" style="padding: 1rem; border-top: 2px solid var(--cyan); text-align: center;">
+        <div class="card reveal-up stagger-2" style="padding: 1rem; border-top: 2px solid var(--color1); text-align: center;">
           <p class="text-sm" style="color: var(--text); font-weight: 600;">Earlier Intervention</p>
           <p class="text-sm mt-1" style="font-size: 0.8rem;">Act when and where it matters</p>
         </div>
         
-        <div class="card reveal-up stagger-3" style="padding: 1rem; border-top: 2px solid var(--purple); text-align: center;">
+        <div class="card reveal-up stagger-3" style="padding: 1rem; border-top: 2px solid var(--color2); text-align: center;">
           <p class="text-sm" style="color: var(--text); font-weight: 600;">Real Coordination</p>
           <p class="text-sm mt-1" style="font-size: 0.8rem;">Across people and seasons</p>
         </div>
         
-        <div class="card reveal-up stagger-4" style="padding: 1rem; border-top: 2px solid var(--green); text-align: center;">
+        <div class="card reveal-up stagger-4" style="padding: 1rem; border-top: 2px solid var(--color3); text-align: center;">
           <p class="text-sm" style="color: var(--text); font-weight: 600;">Compounding Learning</p>
           <p class="text-sm mt-1" style="font-size: 0.8rem;">Knowledge grows over time</p>
         </div>
@@ -925,11 +925,11 @@ p, h1, h2, h3, h4, h5, h6 {
     <div class="card reveal-up mt-5" style="padding: 2rem; border: 1px solid var(--primary); background: linear-gradient(135deg, var(--primary-soft), transparent); text-align: center;">
       <h3 class="text-md" style="color: var(--primary); font-weight: 600;">What Matters</h3>
       <p class="text-md mt-2" style="color: var(--text);">
-        Observations become permanent. Understanding becomes shared. Action becomes coordinated. Learning becomes cumulative.
+        Observations become permanent. Understanding becomes shacolor4. Action becomes coordinated. Learning becomes cumulative.
       </p>
       <div class="divider-glow mt-3 mb-3" style="max-width: 150px; margin-left: auto; margin-right: auto;"></div>
       <p class="text-sm">
-        The result: <span class="glow-primary">sustained mosquito reduction</span> through better understanding and coordination. This year's work makes next year more effective.
+        The result: <span class="glow-primary">sustained mosquito color4uction</span> through better understanding and coordination. This year's work makes next year more effective.
       </p>
     </div>
     
@@ -945,7 +945,7 @@ p, h1, h2, h3, h4, h5, h6 {
   <div class="container" style="max-width: 1000px;">
     
     <div class="text-center mb-4">
-      <span class="badge badge-cyan reveal">Users</span>
+      <span class="badge badge-color1 reveal">Users</span>
       <h2 class="h-md mt-2 reveal-up">Who's It For</h2>
       <p class="text-md mt-2 reveal-up" style="max-width: 500px; margin: 0 auto;">
         Built for every role in mosquito control operations
@@ -968,10 +968,10 @@ p, h1, h2, h3, h4, h5, h6 {
       </div>
       
       <!-- Supervisors -->
-      <div class="card reveal-up stagger-2" style="padding: 1.5rem; border-top: 3px solid var(--cyan);">
-        <h3 class="text-md" style="color: var(--cyan); font-weight: 600;">Supervisors</h3>
+      <div class="card reveal-up stagger-2" style="padding: 1.5rem; border-top: 3px solid var(--color1);">
+        <h3 class="text-md" style="color: var(--color1); font-weight: 600;">Supervisors</h3>
         <p class="text-sm mt-2">
-          See the operational picture across your entire area. Coordinate teams effectively. Make decisions based on shared understanding, not scattered reports. Identify where attention is needed.
+          See the operational picture across your entire area. Coordinate teams effectively. Make decisions based on shacolor4 understanding, not scattecolor4 reports. Identify where attention is needed.
         </p>
         <div class="mt-3" style="border-top: 1px solid var(--border); padding-top: 1rem;">
           <p class="text-sm" style="color: var(--text-muted); font-size: 0.8rem;">
@@ -981,8 +981,8 @@ p, h1, h2, h3, h4, h5, h6 {
       </div>
       
       <!-- Program Directors -->
-      <div class="card reveal-up stagger-3" style="padding: 1.5rem; border-top: 3px solid var(--purple);">
-        <h3 class="text-md" style="color: var(--purple); font-weight: 600;">Program Directors</h3>
+      <div class="card reveal-up stagger-3" style="padding: 1.5rem; border-top: 3px solid var(--color2);">
+        <h3 class="text-md" style="color: var(--color2); font-weight: 600;">Program Directors</h3>
         <p class="text-sm mt-2">
           Build institutional knowledge that persists beyond individual staff. Demonstrate program effectiveness. Your program becomes more capable each year, not just each season.
         </p>
@@ -997,16 +997,16 @@ p, h1, h2, h3, h4, h5, h6 {
     
     
     <!-- Community Note -->
-    <div class="card reveal-up mt-4" style="padding: 1.5rem; border-left: 3px solid var(--cyan);">
+    <div class="card reveal-up mt-4" style="padding: 1.5rem; border-left: 3px solid var(--color1);">
       <div class="grid grid-2" style="gap: 2rem; align-items: center;">
         <div>
-          <h4 class="text-md" style="color: var(--cyan); font-weight: 600;">Community Participation</h4>
+          <h4 class="text-md" style="color: var(--color1); font-weight: 600;">Community Participation</h4>
           <p class="text-sm mt-2">
-            Effective mosquito control includes the community. Through <strong style="color: var(--cyan);">report.mosquitoes.online</strong>, residents contribute observations that expand surveillance and support coordinated control. Public input joins the same shared understanding that guides professional action.
+            Effective mosquito control includes the community. Through <strong style="color: var(--color1);">report.mosquitoes.online</strong>, residents contribute observations that expand surveillance and support coordinated control. Public input joins the same shacolor4 understanding that guides professional action.
           </p>
         </div>
         <div class="text-center">
-          <a href="https://report.mosquitoes.online" target="_blank" class="btn btn-cyan btn-sm">Community Portal</a>
+          <a href="https://report.mosquitoes.online" target="_blank" class="btn btn-color1 btn-sm">Community Portal</a>
         </div>
       </div>
     </div>
@@ -1024,7 +1024,7 @@ p, h1, h2, h3, h4, h5, h6 {
   <div class="container" style="max-width: 800px;">
     
     <div class="text-center mb-4">
-      <span class="badge badge-purple reveal">Get Started</span>
+      <span class="badge badge-color2 reveal">Get Started</span>
       <h2 class="h-md mt-2 reveal-up">Request a Demo</h2>
     </div>
     
@@ -1036,13 +1036,13 @@ p, h1, h2, h3, h4, h5, h6 {
         <p class="text-sm mt-1" style="font-size: 0.8rem;">Short demo of how Nidus works in practice</p>
       </div>
       
-      <div class="card" style="padding: 1.25rem; border-top: 2px solid var(--cyan); text-align: center;">
-        <p class="text-sm" style="color: var(--cyan); font-weight: 700;">2. Discussion</p>
+      <div class="card" style="padding: 1.25rem; border-top: 2px solid var(--color1); text-align: center;">
+        <p class="text-sm" style="color: var(--color1); font-weight: 700;">2. Discussion</p>
         <p class="text-sm mt-1" style="font-size: 0.8rem;">Talk through fit, timeline, and collaboration</p>
       </div>
       
-      <div class="card" style="padding: 1.25rem; border-top: 2px solid var(--purple); text-align: center;">
-        <p class="text-sm" style="color: var(--purple); font-weight: 700;">3. Decision</p>
+      <div class="card" style="padding: 1.25rem; border-top: 2px solid var(--color2); text-align: center;">
+        <p class="text-sm" style="color: var(--color2); font-weight: 700;">3. Decision</p>
         <p class="text-sm mt-1" style="font-size: 0.8rem;">You decide if Nidus is right for you</p>
       </div>
       
@@ -1106,7 +1106,7 @@ p, h1, h2, h3, h4, h5, h6 {
 <footer style="padding: 30px 0; background: var(--bg-soft); border-top: 1px solid var(--border);">
   <div class="container text-center" style="max-width: 600px;">
     <p class="text-sm" style="color: var(--primary); font-weight: 600;">NIDUS</p>
-    <p class="text-sm mt-1" style="color: var(--text-muted);">Software for reducing mosquito populations</p>
+    <p class="text-sm mt-1" style="color: var(--text-muted);">Software for color4ucing mosquito populations</p>
     <div class="flex justify-center gap-3 mt-3" style="flex-wrap: wrap;">
       <a href="mailto:hello@nidus.io" class="text-sm" style="color: var(--text-muted);">hello@nidus.io</a>
       <span class="text-sm" style="color: var(--text-muted);">•</span>
