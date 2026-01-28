@@ -1129,13 +1129,7 @@ p, h1, h2, h3, h4, h5, h6 {
   const body = document.body;
 
   themeToggle.addEventListener('click', () => {
-    body.classList.toggle('light-mode');
-    
-    if (body.classList.contains('light-mode')) {
-      themeText.textContent = 'Dark Mode';
-    } else {
-      themeText.textContent = 'Light Mode';
-    }
+    toggleTheme();
   });
 
 
@@ -1179,6 +1173,35 @@ p, h1, h2, h3, h4, h5, h6 {
       }
     });
   });
+
+  function setTheme(theme) {
+    if (theme == 'light') {
+      body.classList.add('light-mode');
+      themeText.textContent = 'Dark Mode';
+    } else {
+      body.classList.remove('light-mode');
+      themeText.textContent = 'Light Mode';
+    }
+     localStorage.setItem('theme', theme);
+  }
+  function toggleTheme() {
+    if (body.classList.contains('light-mode')) {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      // Use saved preference if available
+      setTheme(savedTheme);
+    } else {
+      // Otherwise use system preference
+      setTheme(prefersDarkScheme.matches ? 'dark' : 'light');
+    }
+  })
 </script>
 
 </body>
